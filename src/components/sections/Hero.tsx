@@ -11,10 +11,10 @@ export function Hero() {
       </div>
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-20 pt-20 sm:px-6 md:pb-28 md:pt-28 lg:grid-cols-[1.25fr_0.75fr]">
         <div className="text-center lg:text-left">
-          <p className="inline-flex rounded-full border border-navy/10 bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+          <p className="inline-flex rounded-full border border-navy/10 bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand">
             Niyosoft Technologies
           </p>
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] text-navy sm:text-5xl xl:text-6xl">
+          <h1 className="mt-6 font-display text-4xl font-bold tracking-[-0.015em] leading-[1.1] text-navy sm:text-5xl xl:text-6xl">
             Transforming Enterprises through <span className="text-gradient sm:whitespace-nowrap">Digital Innovation</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate lg:mx-0">

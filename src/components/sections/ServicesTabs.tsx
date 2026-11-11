@@ -65,7 +65,7 @@ export function ServicesTabs() {
             <div className="bg-brand-gradient inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white">
               <Icon name={active.icon} className="h-7 w-7" />
             </div>
-            <h3 className="mt-5 font-display text-2xl font-extrabold text-navy sm:text-3xl">{active.title}</h3>
+            <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{active.title}</h3>
             <p className="mt-3 text-lg leading-relaxed text-slate">{active.summary}</p>
           </div>
           <ul className="grid gap-3">

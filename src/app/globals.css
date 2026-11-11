@@ -11,7 +11,8 @@
   --color-mist: #e6e3dc;
   --color-slate: #4a5378;
   --font-sans: var(--font-inter);
-  --font-display: var(--font-montserrat);
+  --font-display: var(--font-jakarta);
+  --font-brand: var(--font-montserrat);
 }
 
 html {

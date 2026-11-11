@@ -7,7 +7,7 @@ export function ContactBand() {
       <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl bg-navy px-6 py-12 text-white sm:px-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Have a problem worth solving?</h2>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.015em] sm:text-4xl">Have a problem worth solving?</h2>
             <p className="mt-3 max-w-xl text-white/75">Tell us what is slowing your business down. We will tell you how technology can fix it.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
