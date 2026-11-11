@@ -1,3 +1,4 @@
+import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const steps = [
@@ -15,11 +16,11 @@ export function ProcessSection() {
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <li key={step.title}>
-              <div className="h-full rounded-2xl border border-navy/10 bg-white p-6">
+              <Reveal delay={index * 120} className="h-full rounded-2xl border border-navy/10 bg-white p-6">
                 <span className="text-gradient font-display text-4xl font-bold tracking-[-0.015em]">0{index + 1}</span>
                 <h3 className="mt-3 font-display text-lg font-bold text-navy">{step.title}</h3>
                 <p className="mt-2 text-slate">{step.text}</p>
-              </div>
+              </Reveal>
             </li>
           ))}
         </ol>

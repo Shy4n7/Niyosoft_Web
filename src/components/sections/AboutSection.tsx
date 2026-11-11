@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
+import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 export function AboutSection() {
@@ -8,7 +9,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="About us" title="Technology with a" accent="purpose" />
         <div className="mt-12 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+          <Reveal>
             <figure className="relative mx-auto w-full max-w-sm">
               <div className="bg-brand-gradient absolute -bottom-4 -right-4 h-full w-full rounded-3xl" aria-hidden="true" />
               <Image
@@ -20,8 +21,8 @@ export function AboutSection() {
                 className="relative h-auto w-full rounded-3xl border border-navy/10 bg-white"
               />
             </figure>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={150}>
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">Founder</p>
             <h3 className="mt-3 font-display text-3xl font-bold tracking-[-0.015em] text-navy sm:text-4xl">{site.founder}</h3>
             <p className="mt-1 font-medium text-slate">Advocate &middot; Founder &amp; Proprietor, {site.name}</p>
@@ -38,7 +39,7 @@ export function AboutSection() {
                 <p className="mt-2 text-sm leading-relaxed text-slate">To be the technology partner businesses trust to transform how they work.</p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

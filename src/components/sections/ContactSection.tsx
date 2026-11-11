@@ -1,6 +1,7 @@
 import { fullAddress, site } from "@/lib/site";
 import { CopyButton } from "../CopyButton";
 import { Icon } from "../Icon";
+import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
@@ -17,9 +18,10 @@ export function ContactSection() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Contact" title="Let's talk about" accent="your problem" intro="Call, message or email us. We usually reply the same day." />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {channels.map((channel) => (
-            <div
+          {channels.map((channel, index) => (
+            <Reveal
               key={channel.label}
+              delay={index * 120}
               className="group relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5"
             >
               <a href={channel.href} {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block">
@@ -34,10 +36,10 @@ export function ContactSection() {
                   <CopyButton value={channel.copy} label={channel.label === "Email" ? "email address" : "phone number"} />
                 </div>
               )}
-            </div>
+            </Reveal>
           ))}
         </div>
-        <div className="mt-6 grid overflow-hidden rounded-2xl border border-navy/10 bg-paper lg:grid-cols-[1fr_1.6fr]">
+        <Reveal className="mt-6 grid overflow-hidden rounded-2xl border border-navy/10 bg-paper lg:grid-cols-[1fr_1.6fr]">
           <div className="p-6 sm:p-8">
             <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">
               <Icon name="pin" />
@@ -60,7 +62,7 @@ export function ContactSection() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
