@@ -1,5 +1,6 @@
 import { fullAddress, site } from "@/lib/site";
 import { CopyButton } from "../CopyButton";
+import { EmailText } from "../EmailText";
 import { Icon } from "../Icon";
 import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -17,19 +18,21 @@ export function ContactSection() {
     <section id="contact" className="scroll-mt-20 bg-white px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Contact" title="Let's talk about" accent="your problem" intro="Call, message or email us. We usually reply the same day." />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {channels.map((channel, index) => (
             <Reveal
               key={channel.label}
               delay={index * 120}
-              className="group relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5"
+              className={`group relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5 ${channel.label === "Email" ? "sm:col-span-2 lg:col-span-1" : ""}`}
             >
               <a href={channel.href} {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block">
                 <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">
                   <Icon name={channel.icon} />
                 </div>
                 <p className="mt-4 text-sm font-medium text-slate">{channel.label}</p>
-                <p className="mt-1 break-all font-display text-lg font-bold text-navy group-hover:text-brand">{channel.value}</p>
+                <p className="mt-1 font-display text-lg font-bold text-navy group-hover:text-brand">
+                  {channel.label === "Email" ? <EmailText email={channel.value} /> : channel.value}
+                </p>
               </a>
               {channel.copy && (
                 <div className="absolute right-5 top-5">
