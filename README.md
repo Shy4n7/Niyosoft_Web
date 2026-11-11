@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Niyosoft Technologies Website
 
-## Getting Started
+Static Next.js + Tailwind site, exported to `out/` and hosted on Cloudflare Pages.
 
-First, run the development server:
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Output goes to `out/`. Business details (phone, email, address, domain) live in `src/lib/site.ts`; services in `src/lib/services.ts`.
 
-## Learn More
+## Domain
 
-To learn more about Next.js, take a look at the following resources:
+The site URL defaults to `https://niyosoft.in`. If you register a different domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://niyosoft.com`) in the Cloudflare Pages environment variables. It drives canonical URLs, the sitemap and social share tags.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy to Cloudflare Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Buy the domain in Cloudflare dashboard > Domain Registration > Register Domains.
+2. Push this folder to a GitHub repository.
+3. Cloudflare dashboard > Workers & Pages > Create > Pages > Connect to Git, pick the repository.
+4. Build settings: framework preset `Next.js (Static HTML Export)`, build command `npm run build`, output directory `out`.
+5. After the first deploy: project > Custom domains > add the domain (and `www`).
 
-## Deploy on Vercel
+Manual deploy without Git:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+npx wrangler pages deploy out --project-name niyosoft
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## After launch
+
+- Add the site to Google Search Console and submit `/sitemap.xml`.
+- Create a Google Business Profile for the Pollachi office.
