@@ -18,6 +18,18 @@ test.describe("Mobile", () => {
     await home.expectSectionAtTop("services");
   });
 
+  test("Escape closes the menu and returns focus to the toggle", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Open menu" }).click();
+    const mobileNav = page.getByRole("navigation", { name: "Mobile" });
+    await expect(mobileNav).toBeVisible();
+
+    await page.keyboard.press("Escape");
+
+    await expect(mobileNav).toBeHidden();
+    await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
+  });
+
   test("pages do not scroll sideways", async ({ page }) => {
     for (const path of ["/", "/projects/", "/privacy/", "/terms/"]) {
       await page.goto(path);

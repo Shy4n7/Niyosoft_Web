@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { navLinks, type NavLink } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { Logo } from "./Logo";
@@ -14,6 +14,8 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const isInitialLoad = useRef(true);
   const onHome = pathname === "/";
   const activeSection = useActiveSection(sectionIds, onHome);
   const isActive = (href: string) => {
@@ -22,13 +24,33 @@ export function Header() {
   };
 
   useEffect(() => {
+    const initialLoad = isInitialLoad.current;
+    isInitialLoad.current = false;
     if (!onHome || !window.location.hash) return;
     const target = document.getElementById(window.location.hash.slice(1));
     if (!target) return;
+    if (initialLoad) {
+      let frame = 0;
+      document.fonts.ready.then(() => {
+        frame = requestAnimationFrame(() => target.scrollIntoView({ behavior: "instant", block: "start" }));
+      });
+      return () => cancelAnimationFrame(frame);
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
     const frame = requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
     return () => cancelAnimationFrame(frame);
   }, [onHome]);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
 
   const scrollToSection = (event: MouseEvent<HTMLAnchorElement>, link: NavLink) => {
     setOpen(false);
@@ -68,10 +90,12 @@ export function Header() {
           </Link>
         </nav>
         <button
+          ref={menuButtonRef}
           type="button"
           className="rounded-md p-2 text-navy md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
@@ -80,7 +104,7 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <nav className="border-t border-navy/10 bg-paper px-4 pb-5 md:hidden" aria-label="Mobile">
+        <nav id="mobile-nav" className="border-t border-navy/10 bg-paper px-4 pb-5 md:hidden" aria-label="Mobile">
           {navLinks.map((link) => (
             <Link
               key={link.href}
