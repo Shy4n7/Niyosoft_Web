@@ -29,7 +29,7 @@ export function ServicesTabs() {
 
   return (
     <div className="mt-12">
-      <div role="tablist" aria-label="Services" onKeyDown={onKeyDown} className="flex flex-wrap justify-center gap-2">
+      <div role="tablist" aria-label="Services" onKeyDown={onKeyDown} className="-mx-4 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
         {services.map((service, index) => {
           const selected = index === activeIndex;
           return (
@@ -45,9 +45,9 @@ export function ServicesTabs() {
               aria-controls="service-panel"
               tabIndex={selected ? 0 : -1}
               onClick={() => setActiveIndex(index)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${selected ? "bg-brand-gradient text-white shadow-md shadow-brand/20" : "border border-navy/15 bg-white text-navy hover:border-brand hover:text-brand"}`}
+              className={`shrink-0 snap-start whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition ${selected ? "bg-brand-gradient text-white shadow-md shadow-brand/20" : "border border-navy/15 bg-white text-navy hover:border-brand hover:text-brand"}`}
             >
-              {service.title}
+              {service.shortTitle}
             </button>
           );
         })}

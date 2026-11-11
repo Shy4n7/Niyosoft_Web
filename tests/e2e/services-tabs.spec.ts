@@ -6,11 +6,19 @@ test.describe("Services tabs", () => {
     const home = new HomePage(page);
     await home.goto();
 
-    await home.serviceTabs.filter({ hasText: "Payment Integration" }).click();
+    await home.serviceTabs.filter({ hasText: "Payments" }).click();
 
-    await expect(home.serviceTabs.filter({ hasText: "Payment Integration" })).toHaveAttribute("aria-selected", "true");
+    await expect(home.serviceTabs.filter({ hasText: "Payments" })).toHaveAttribute("aria-selected", "true");
     await expect(home.servicePanel.getByRole("heading")).toHaveText("Payment Integration");
     await expect(home.servicePanel).toContainText("UPI, cards and wallets");
+  });
+
+  test("all tabs fit on one row", async ({ page }) => {
+    const home = new HomePage(page);
+    await home.goto();
+    const tops = await home.serviceTabs.evaluateAll((tabs) => tabs.map((tab) => Math.round(tab.getBoundingClientRect().top)));
+
+    expect(new Set(tops).size).toBe(1);
   });
 
   test("only the selected tab is in the Tab order", async ({ page }) => {
@@ -29,22 +37,22 @@ test.describe("Services tabs", () => {
     await home.goto();
     await home.serviceTabs.first().focus();
 
-    const expectSelected = async (title: string) => {
-      const tab = home.serviceTabs.filter({ hasText: title });
+    const expectSelected = async (label: string, title: string) => {
+      const tab = home.serviceTabs.filter({ hasText: label });
       await expect(tab).toBeFocused();
       await expect(tab).toHaveAttribute("aria-selected", "true");
       await expect(home.servicePanel.getByRole("heading")).toHaveText(title);
     };
 
     await page.keyboard.press("ArrowRight");
-    await expectSelected("Website Development");
+    await expectSelected("Websites", "Website Development");
     await page.keyboard.press("End");
-    await expectSelected("Software Installation & IT Support");
+    await expectSelected("IT Support", "Software Installation & IT Support");
     await page.keyboard.press("ArrowRight");
-    await expectSelected("Mobile App Development");
+    await expectSelected("Mobile Apps", "Mobile App Development");
     await page.keyboard.press("ArrowLeft");
-    await expectSelected("Software Installation & IT Support");
+    await expectSelected("IT Support", "Software Installation & IT Support");
     await page.keyboard.press("Home");
-    await expectSelected("Mobile App Development");
+    await expectSelected("Mobile Apps", "Mobile App Development");
   });
 });

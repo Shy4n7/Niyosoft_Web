@@ -30,6 +30,16 @@ test.describe("Mobile", () => {
     await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
   });
 
+  test("service tabs sit in one row that scrolls sideways", async ({ page }) => {
+    const home = new HomePage(page);
+    await home.goto();
+    const tops = await home.serviceTabs.evaluateAll((tabs) => tabs.map((tab) => Math.round(tab.getBoundingClientRect().top)));
+
+    expect(new Set(tops).size).toBe(1);
+    await home.serviceTabs.last().click();
+    await expect(home.servicePanel.getByRole("heading")).toHaveText("Software Installation & IT Support");
+  });
+
   test("pages do not scroll sideways", async ({ page }) => {
     for (const path of ["/", "/projects/", "/privacy/", "/terms/"]) {
       await page.goto(path);
