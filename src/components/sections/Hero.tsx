@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "../Icon";
+import { ServiceOrbit } from "./ServiceOrbit";
 
 export function Hero() {
   return (
@@ -29,9 +29,9 @@ export function Hero() {
             </Link>
           </div>
         </div>
-        <div className="relative hidden lg:block" aria-hidden="true">
-          <div className="absolute inset-8 rounded-full bg-sky/30 blur-3xl" />
-          <Image src="/images/n-mark.webp" alt="" width={568} height={590} sizes="400px" className="relative mx-auto h-auto w-full max-w-[25rem] drop-shadow-2xl" />
+        <div className="relative hidden lg:block">
+          <div className="absolute inset-8 rounded-full bg-sky/30 blur-3xl" aria-hidden="true" />
+          <ServiceOrbit />
         </div>
       </div>
     </section>
