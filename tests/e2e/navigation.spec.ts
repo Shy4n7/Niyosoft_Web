@@ -42,6 +42,17 @@ test.describe("Navigation", () => {
     await home.expectSectionAtTop("about");
   });
 
+  test("reloading after scrolling starts back at the top", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1000);
+
+    await page.reload();
+
+    await page.waitForLoadState("load");
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  });
+
   test("footer legal links open their pages", async ({ page }) => {
     await page.goto("/");
     const footer = page.getByRole("contentinfo");
