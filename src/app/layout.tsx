@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { FloatingActions } from "@/components/FloatingActions";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -7,9 +7,21 @@ import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const montserrat = Montserrat({ subsets: ["latin"], weight: ["600", "800"], variable: "--font-montserrat" });
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-jakarta" });
+const inter = localFont({
+  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--font-inter",
+});
+const montserrat = localFont({
+  src: "../../node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--font-montserrat",
+});
+const jakarta = localFont({
+  src: "../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2",
+  weight: "200 800",
+  variable: "--font-jakarta",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
