@@ -70,7 +70,7 @@ export function ServicesTabs() {
           </div>
           <ul className="grid gap-3">
             {active.points.map((point) => (
-              <li key={point} className="flex items-center gap-3 rounded-xl bg-paper px-4 py-3 font-medium text-ink">
+              <li key={point} className="flex items-center gap-3 rounded-xl border border-brand/10 bg-brand/[0.06] px-4 py-3 font-medium text-navy">
                 <Icon name="check" className="h-5 w-5 shrink-0 text-brand" /> {point}
               </li>
             ))}

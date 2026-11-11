@@ -3,11 +3,13 @@ import { expect, test, type Page } from "@playwright/test";
 const orbitLayer = (page: Page) => page.locator('[class*="spin_70s_linear_infinite]"]');
 
 test.describe("Hero service orbit", () => {
-  test("shows every service and is hidden from screen readers", async ({ page }) => {
+  test("shows four services and is hidden from screen readers", async ({ page }) => {
     await page.goto("/");
 
-    await expect(orbitLayer(page).locator("svg")).toHaveCount(6);
-    await expect(orbitLayer(page).getByText("Online Ordering", { exact: true })).toBeVisible();
+    await expect(orbitLayer(page).locator("svg")).toHaveCount(4);
+    await expect(orbitLayer(page).getByText("Mobile Apps", { exact: true })).toBeVisible();
+    await expect(orbitLayer(page).getByText("Payments", { exact: true })).toHaveCount(0);
+    await expect(orbitLayer(page).getByText("Online Ordering", { exact: true })).toHaveCount(0);
     await expect(page.locator('[aria-hidden="true"]', { has: orbitLayer(page) })).toHaveCount(1);
   });
 

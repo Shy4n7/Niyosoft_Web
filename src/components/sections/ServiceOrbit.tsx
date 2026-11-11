@@ -3,11 +3,13 @@ import { services } from "@/lib/services";
 import { Icon } from "../Icon";
 
 const ORBIT_RADIUS_PERCENT = 41;
+const HIDDEN_FROM_ORBIT = new Set(["online-ordering", "payments"]);
+const orbitServices = services.filter((service) => !HIDDEN_FROM_ORBIT.has(service.slug));
 const SPIN = "motion-safe:animate-[spin_70s_linear_infinite] group-hover:[animation-play-state:paused]";
 const COUNTER_SPIN = "motion-safe:animate-[spin_70s_linear_infinite_reverse] group-hover:[animation-play-state:paused]";
 
 function orbitPosition(index: number): CSSProperties {
-  const angle = (index / services.length) * 2 * Math.PI - Math.PI / 2;
+  const angle = (index / orbitServices.length) * 2 * Math.PI - Math.PI / 2;
   return {
     left: `${(50 + ORBIT_RADIUS_PERCENT * Math.cos(angle)).toFixed(2)}%`,
     top: `${(50 + ORBIT_RADIUS_PERCENT * Math.sin(angle)).toFixed(2)}%`,
@@ -19,13 +21,8 @@ export function ServiceOrbit() {
     <div className="group relative mx-auto aspect-square w-full max-w-[26rem]" aria-hidden="true">
       <div className="absolute inset-[9%] rounded-full border-2 border-dashed border-brand/20" />
       <div className="absolute inset-[27%] rounded-full border border-navy/10" />
-      <div className="absolute inset-[33%] flex flex-col items-center justify-center rounded-full bg-white text-center shadow-xl shadow-navy/10">
-        <span className="text-gradient font-display text-4xl font-extrabold">{services.length}</span>
-        <span className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate">services</span>
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate">one team</span>
-      </div>
       <div className={`absolute inset-0 ${SPIN}`}>
-        {services.map((service, index) => (
+        {orbitServices.map((service, index) => (
           <div key={service.slug} className="absolute -translate-x-1/2 -translate-y-1/2" style={orbitPosition(index)}>
             <div className={`flex flex-col items-center gap-1.5 ${COUNTER_SPIN}`}>
               <span className="bg-brand-gradient flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg shadow-brand/25">
