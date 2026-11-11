@@ -35,9 +35,9 @@ export const viewport: Viewport = { themeColor: "#0b1a5c" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${montserrat.variable} ${jakarta.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${inter.variable} ${montserrat.variable} ${jakarta.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');history.scrollRestoration='manual'" }} />
+        <script dangerouslySetInnerHTML={{ __html: "history.scrollRestoration='manual'" }} />
       </head>
       <body className="font-sans">
         <JsonLd />
