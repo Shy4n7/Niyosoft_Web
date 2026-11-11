@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { services } from "@/lib/services";
 import { Icon } from "../Icon";
@@ -21,6 +22,10 @@ export function ServiceOrbit() {
     <div className="group relative mx-auto aspect-square w-full max-w-[26rem]" aria-hidden="true">
       <div className="absolute inset-[9%] rounded-full border-2 border-dashed border-brand/20" />
       <div className="absolute inset-[27%] rounded-full border border-navy/10" />
+      <div className="absolute inset-[34%] flex items-center justify-center">
+        <div className="absolute inset-0 rounded-full bg-sky/40 blur-2xl" />
+        <Image src="/images/n-mark.webp" alt="" width={280} height={291} className="relative h-auto w-[78%] drop-shadow-xl" />
+      </div>
       <div className={`absolute inset-0 ${SPIN}`}>
         {orbitServices.map((service, index) => (
           <div key={service.slug} className="absolute -translate-x-1/2 -translate-y-1/2" style={orbitPosition(index)}>

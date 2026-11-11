@@ -11,6 +11,7 @@ test.describe("Hero service orbit", () => {
     await expect(orbitLayer(page).getByText("Payments", { exact: true })).toHaveCount(0);
     await expect(orbitLayer(page).getByText("Online Ordering", { exact: true })).toHaveCount(0);
     await expect(page.locator('[aria-hidden="true"]', { has: orbitLayer(page) })).toHaveCount(1);
+    await expect(page.locator('img[src="/images/n-mark.webp"]')).toBeVisible();
   });
 
   test("spins, and stays still when reduced motion is requested", async ({ browser }) => {
