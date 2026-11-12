@@ -13,6 +13,13 @@ export const site = {
   phoneHref: "tel:+917904153087",
   whatsappHref: "https://wa.me/917904153087",
   email: "niyosofttechnologies@gmail.com",
+  hr: {
+    name: "William Christopher",
+    role: "Head HR",
+    phone: "+91 99425 67463",
+    phoneHref: "tel:+919942567463",
+    photo: "/images/william-christopher.webp",
+  },
   address: {
     street: "No 2/281A, Selvaganapathy Nagar, Unjavelampatti",
     locality: "Pollachi",

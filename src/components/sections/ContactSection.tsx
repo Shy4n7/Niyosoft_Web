@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { fullAddress, site } from "@/lib/site";
 import { CopyButton } from "../CopyButton";
 import { EmailText } from "../EmailText";
@@ -42,6 +43,27 @@ export function ContactSection() {
             </Reveal>
           ))}
         </div>
+        <Reveal className="group relative mt-6 flex flex-col gap-5 rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5 sm:flex-row sm:items-center">
+          <Image
+            src={site.hr.photo}
+            alt={`${site.hr.name}, ${site.hr.role} at ${site.name}`}
+            width={400}
+            height={400}
+            sizes="96px"
+            className="h-24 w-24 shrink-0 rounded-2xl object-cover"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-medium text-slate">{site.hr.role}</p>
+            <h3 className="mt-1 font-display text-xl font-bold text-navy">{site.hr.name}</h3>
+            <a href={site.hr.phoneHref} className="mt-2 inline-flex items-center gap-2 font-display text-lg font-bold text-navy hover:text-brand">
+              <Icon name="phone" className="h-5 w-5 text-brand" />
+              {site.hr.phone}
+            </a>
+          </div>
+          <div className="absolute right-5 top-5">
+            <CopyButton value={site.hr.phone} label="phone number" />
+          </div>
+        </Reveal>
         <Reveal className="mt-6 grid overflow-hidden rounded-2xl border border-navy/10 bg-paper lg:grid-cols-[1fr_1.6fr]">
           <div className="p-6 sm:p-8">
             <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">
