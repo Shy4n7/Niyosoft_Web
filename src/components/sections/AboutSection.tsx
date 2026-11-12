@@ -3,44 +3,61 @@ import { site } from "@/lib/site";
 import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
 
+const team = [
+  {
+    name: site.founder,
+    role: "Founder & Proprietor",
+    photo: "/images/ashok-thomas.webp",
+    bio: `${site.founder} founded ${site.name} on 14 January ${site.foundedYear} in Pollachi with a simple aim: help businesses solve everyday problems with software. He sets the direction of the company, works closely with clients to understand what they really need, and makes sure every project is delivered with care, honesty and long-term support.`,
+  },
+  {
+    name: site.hr.name,
+    role: site.hr.role,
+    photo: site.hr.photo,
+    bio: `${site.hr.name} leads people and culture at ${site.name}. He looks after hiring, onboarding and the growth of the team, building a workplace where skilled people can do their best work for our clients. For careers and HR enquiries, reach him on ${site.hr.phone}.`,
+  },
+];
+
 export function AboutSection() {
   return (
     <section id="about" className="scroll-mt-20 bg-white px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="About us" title="Technology with a" accent="purpose" />
-        <div className="mt-12 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <figure className="relative mx-auto w-full max-w-sm">
-              <div className="bg-brand-gradient absolute -bottom-4 -right-4 h-full w-full rounded-3xl" aria-hidden="true" />
-              <Image
-                src="/images/ashok-thomas.webp"
-                alt={`${site.founder}, Founder of ${site.name}`}
-                width={640}
-                height={640}
-                sizes="(min-width: 1024px) 384px, 90vw"
-                className="relative h-auto w-full rounded-3xl border border-navy/10 bg-white"
-              />
-            </figure>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">Founder</p>
-            <h3 className="mt-3 font-display text-3xl font-bold tracking-[-0.015em] text-navy sm:text-4xl">{site.founder}</h3>
-            <p className="mt-1 font-medium text-slate">Founder &amp; Proprietor, {site.name}</p>
-            <p className="mt-6 leading-relaxed text-slate">
-              {site.founder} founded {site.name} on 14 January {site.foundedYear} in Pollachi to help businesses solve everyday problems with software.
-            </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-paper p-5">
-                <h4 className="font-display font-bold text-navy">Our mission</h4>
-                <p className="mt-2 text-sm leading-relaxed text-slate">To solve real problems for businesses through dependable, easy-to-use software.</p>
-              </div>
-              <div className="rounded-2xl bg-paper p-5">
-                <h4 className="font-display font-bold text-navy">Our vision</h4>
-                <p className="mt-2 text-sm leading-relaxed text-slate">To be the technology partner businesses trust to transform how they work.</p>
-              </div>
-            </div>
-          </Reveal>
+        <SectionHeading
+          eyebrow="About us"
+          title="Technology with a"
+          accent="purpose"
+          intro={`Founded in Pollachi in ${site.foundedYear}, ${site.name} builds dependable software for businesses. Meet the people behind it.`}
+        />
+        <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-10">
+          {team.map((person, index) => (
+            <Reveal key={person.name} delay={index * 150} className="flex flex-col items-center text-center sm:items-start sm:text-left">
+              <figure className="relative w-full max-w-72">
+                <div className="bg-brand-gradient absolute -bottom-3 -right-3 h-full w-full rounded-3xl" aria-hidden="true" />
+                <Image
+                  src={person.photo}
+                  alt={`${person.name}, ${person.role} at ${site.name}`}
+                  width={640}
+                  height={640}
+                  sizes="288px"
+                  className="relative aspect-square h-auto w-full rounded-3xl border border-navy/10 bg-white object-cover"
+                />
+              </figure>
+              <p className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
+              <h3 className="mt-2 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{person.name}</h3>
+              <p className="mt-4 max-w-xl leading-relaxed text-slate">{person.bio}</p>
+            </Reveal>
+          ))}
         </div>
+        <Reveal className="mt-16 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl bg-paper p-6">
+            <h4 className="font-display font-bold text-navy">Our mission</h4>
+            <p className="mt-2 text-sm leading-relaxed text-slate">To solve real problems for businesses through dependable, easy-to-use software.</p>
+          </div>
+          <div className="rounded-2xl bg-paper p-6">
+            <h4 className="font-display font-bold text-navy">Our vision</h4>
+            <p className="mt-2 text-sm leading-relaxed text-slate">To be the technology partner businesses trust to transform how they work.</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

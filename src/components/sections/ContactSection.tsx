@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { fullAddress, site } from "@/lib/site";
 import { CopyButton } from "../CopyButton";
 import { EmailText } from "../EmailText";
@@ -44,19 +43,12 @@ export function ContactSection() {
           ))}
         </div>
         <Reveal className="group relative mt-6 flex flex-col gap-5 rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5 sm:flex-row sm:items-center">
-          <Image
-            src={site.hr.photo}
-            alt={`${site.hr.name}, ${site.hr.role} at ${site.name}`}
-            width={400}
-            height={400}
-            sizes="96px"
-            className="h-24 w-24 shrink-0 rounded-2xl object-cover"
-          />
+          <div className="bg-brand-gradient inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white">
+            <Icon name="phone" />
+          </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-slate">{site.hr.role}</p>
-            <h3 className="mt-1 font-display text-xl font-bold text-navy">{site.hr.name}</h3>
-            <a href={site.hr.phoneHref} className="mt-2 inline-flex items-center gap-2 font-display text-lg font-bold text-navy hover:text-brand">
-              <Icon name="phone" className="h-5 w-5 text-brand" />
+            <p className="text-sm font-medium text-slate">HR &amp; careers &middot; {site.hr.name}, {site.hr.role}</p>
+            <a href={site.hr.phoneHref} className="mt-1 inline-block font-display text-lg font-bold text-navy hover:text-brand">
               {site.hr.phone}
             </a>
           </div>
