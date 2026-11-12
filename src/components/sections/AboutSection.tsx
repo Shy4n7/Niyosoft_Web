@@ -25,9 +25,9 @@ export function AboutSection() {
           <Reveal delay={150}>
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">Founder</p>
             <h3 className="mt-3 font-display text-3xl font-bold tracking-[-0.015em] text-navy sm:text-4xl">{site.founder}</h3>
-            <p className="mt-1 font-medium text-slate">Advocate &middot; Founder &amp; Proprietor, {site.name}</p>
+            <p className="mt-1 font-medium text-slate">Founder &amp; Proprietor, {site.name}</p>
             <p className="mt-6 leading-relaxed text-slate">
-              An advocate by profession, {site.founder} founded {site.name} on 14 January {site.foundedYear} in Pollachi to help businesses solve everyday problems with software.
+              {site.founder} founded {site.name} on 14 January {site.foundedYear} in Pollachi to help businesses solve everyday problems with software.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl bg-paper p-5">
