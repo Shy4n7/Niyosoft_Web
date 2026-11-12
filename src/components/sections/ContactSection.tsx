@@ -42,20 +42,6 @@ export function ContactSection() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="group relative mt-6 flex flex-col gap-5 rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5 sm:flex-row sm:items-center">
-          <div className="bg-brand-gradient inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white">
-            <Icon name="phone" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-slate">HR &amp; careers &middot; {site.hr.name}, {site.hr.role}</p>
-            <a href={site.hr.phoneHref} className="mt-1 inline-block font-display text-lg font-bold text-navy hover:text-brand">
-              {site.hr.phone}
-            </a>
-          </div>
-          <div className="absolute right-5 top-5">
-            <CopyButton value={site.hr.phone} label="phone number" />
-          </div>
-        </Reveal>
         <Reveal className="mt-6 grid overflow-hidden rounded-2xl border border-navy/10 bg-paper lg:grid-cols-[1fr_1.6fr]">
           <div className="p-6 sm:p-8">
             <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">

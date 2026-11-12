@@ -9,15 +9,13 @@ export const site = {
   foundedDate: "2021-01-14",
   foundedYear: 2021,
   udyam: "UDYAM-TN-03-0129180",
-  phone: "+91 79041 53087",
-  phoneHref: "tel:+917904153087",
-  whatsappHref: "https://wa.me/917904153087",
+  phone: "+91 99425 67463",
+  phoneHref: "tel:+919942567463",
+  whatsappHref: "https://wa.me/919942567463",
   email: "niyosofttechnologies@gmail.com",
   hr: {
     name: "William Christopher",
     role: "Head HR",
-    phone: "+91 99425 67463",
-    phoneHref: "tel:+919942567463",
     photo: "/images/william-christopher.webp",
   },
   address: {
