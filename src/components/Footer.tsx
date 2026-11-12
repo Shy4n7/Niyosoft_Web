@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="border-t border-navy/10 bg-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1.4fr]">
         <div>
-          <Logo />
+          <Logo size="lg" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate">{site.tagline}.</p>
           <p className="mt-4 inline-flex rounded-full border border-navy/15 px-3 py-1 text-xs font-medium text-navy">
             MSME Registered &middot; {site.udyam}

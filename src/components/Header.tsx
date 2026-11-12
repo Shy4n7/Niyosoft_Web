@@ -68,7 +68,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
           {navLinks.map((link) => (
