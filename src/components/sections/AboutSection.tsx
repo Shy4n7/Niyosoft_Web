@@ -15,8 +15,8 @@ export function AboutSection() {
               <Image
                 src="/images/ashok-thomas.webp"
                 alt={`${site.founder}, Founder of ${site.name}`}
-                width={900}
-                height={1246}
+                width={740}
+                height={840}
                 sizes="(min-width: 1024px) 384px, 90vw"
                 className="relative h-auto w-full rounded-3xl border border-navy/10 bg-white"
               />
