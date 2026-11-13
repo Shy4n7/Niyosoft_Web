@@ -31,11 +31,19 @@ export const site = {
   },
 } as const;
 
-/** Businesses we have worked with. Only Ganesh Department Store has a published case study. */
-export const clients: readonly { name: string; href?: string }[] = [
-  { name: "Ganesh Department Store", href: "/projects/" },
+export type Client = {
+  name: string;
+  /** Logo on a white background, with its pixel size. Clients without one show their initials. */
+  logo?: { src: string; width: number; height: number };
+  /** Link to our case study for this client, when one is published. */
+  href?: string;
+};
+
+/** Businesses we have worked with. Only Ganesh Department Stores has a published case study. */
+export const clients: readonly Client[] = [
+  { name: "Ganesh Department Stores", logo: { src: "/images/client-ganesh-department-stores.webp", width: 183, height: 277 }, href: "/projects/" },
   { name: "SS Traders" },
-  { name: "Galku Exports" },
+  { name: "Galuku Exports", logo: { src: "/images/client-galuku.webp", width: 216, height: 159 } },
 ];
 
 export type TeamMember = { name: string; role: string; photo: string; bio: string };

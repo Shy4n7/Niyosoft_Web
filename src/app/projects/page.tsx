@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "Projects",
-  "Case study: the Ganesh Department Store mobile app by Niyosoft Technologies, with online ordering, in-app payment and home delivery.",
+  "Case study: the Ganesh Department Stores mobile app by Niyosoft Technologies, with online ordering, in-app payment and home delivery.",
   "/projects/",
 );
 
@@ -23,7 +23,7 @@ export default function ProjectsPage() {
       <article className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="rounded-3xl border border-navy/10 bg-white p-6 sm:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">Mobile app &middot; Retail</p>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-[-0.015em] text-navy sm:text-4xl">Ganesh Department Store</h2>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-[-0.015em] text-navy sm:text-4xl">Ganesh Department Stores</h2>
           <div className="mt-6 grid gap-8 text-slate md:grid-cols-2">
             <div>
               <h3 className="font-display font-bold text-navy">The problem</h3>
