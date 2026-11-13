@@ -16,6 +16,8 @@ export function TeamSlider() {
   const [paused, setPaused] = useState(false);
   const [delay, setDelay] = useState(AUTOPLAY_MS);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [inView, setInView] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
   const count = developers.length;
 
@@ -28,14 +30,24 @@ export function TeamSlider() {
   }, []);
 
   // One timer per slide: any change of slide, pause or delay restarts it.
+  // Only play while the slider is on screen, so visitors always meet the first person
+  // when they scroll to it, and it does not move while nobody is looking.
   useEffect(() => {
-    if (paused || reducedMotion) return;
+    const element = rootRef.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.5 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView || paused || reducedMotion) return;
     const timer = setTimeout(() => {
       setDelay(AUTOPLAY_MS);
       setIndex((current) => (current + 1) % count);
     }, delay);
     return () => clearTimeout(timer);
-  }, [index, paused, delay, reducedMotion, count]);
+  }, [index, inView, paused, delay, reducedMotion, count]);
 
   const go = (next: number) => {
     setDelay(AUTOPLAY_MS);
@@ -73,6 +85,7 @@ export function TeamSlider() {
 
   return (
     <div
+      ref={rootRef}
       role="region"
       aria-roledescription="carousel"
       aria-label="Our developers"
@@ -96,7 +109,7 @@ export function TeamSlider() {
                 aria-label={`${i + 1} of ${count}: ${person.name}`}
                 aria-hidden={i !== index}
                 inert={i !== index}
-                className="grid w-full shrink-0 items-center gap-6 px-6 py-4 sm:px-10 md:grid-cols-[16rem_1fr] md:gap-12"
+                className="grid w-full shrink-0 content-start items-center gap-6 md:content-center px-6 py-4 sm:px-10 md:grid-cols-[16rem_1fr] md:gap-12"
               >
                 <TeamPhoto
                   src={person.photo}

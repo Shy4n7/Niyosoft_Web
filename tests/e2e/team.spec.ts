@@ -15,6 +15,8 @@ test.describe("Meet the team", () => {
     await home.goto("#about");
     const slider = page.getByRole("region", { name: "Our developers" });
     const active = slider.locator("article[aria-hidden='false'] h4");
+    await slider.scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
 
     await expect(active).toHaveText("Shyan Paul S");
     await expect(active).toHaveText("Vishal P", { timeout: 4500 });
@@ -25,12 +27,27 @@ test.describe("Meet the team", () => {
     await expect(slider.getByRole("button", { name: "Show Nithin Sachin R" })).toHaveAttribute("aria-current", "true");
   });
 
+  test("slider waits until it is on screen and starts from the first person", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForTimeout(4000);
+    const slider = page.getByRole("region", { name: "Our developers" });
+    const active = slider.locator("article[aria-hidden='false'] h4");
+    await expect(active).toHaveText("Shyan Paul S");
+
+    await slider.scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
+    await expect(active).toHaveText("Shyan Paul S");
+    await expect(active).toHaveText("Vishal P", { timeout: 4500 });
+  });
+
   test("holding a card stops the slider and it moves one second after the finger lifts", async ({ page }) => {
     const home = new HomePage(page);
     await home.goto("#about");
     const slider = page.getByRole("region", { name: "Our developers" });
     const active = slider.locator("article[aria-hidden='false'] h4");
     const track = slider.locator("div.overflow-hidden").first();
+    await slider.scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
     await expect(active).toHaveText("Shyan Paul S");
 
     const touch = (type: string) =>
