@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { site } from "@/lib/site";
 import { Reveal } from "../Reveal";
+import { TeamPhoto } from "../TeamPhoto";
 import { SectionHeading } from "./SectionHeading";
 import { TeamSlider } from "./TeamSlider";
 
@@ -32,18 +32,13 @@ export function AboutSection() {
         <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-10">
           {team.map((person, index) => (
             <Reveal key={person.name} delay={index * 150} className="flex flex-col items-center text-center sm:items-start sm:text-left">
-              <figure className="relative w-full max-w-72">
-                <div className="bg-brand-gradient absolute -bottom-3 -right-3 h-full w-full rounded-3xl" aria-hidden="true" />
-                <Image
-                  src={person.photo}
-                  alt={`${person.name}, ${person.role} at ${site.name}`}
-                  width={640}
-                  height={640}
-                  sizes="288px"
-                  className="relative aspect-square h-auto w-full rounded-3xl border border-navy/10 bg-white object-cover"
-                />
-              </figure>
-              <p className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
+              <TeamPhoto
+                src={person.photo}
+                alt={`${person.name}, ${person.role} at ${site.name}`}
+                sizes="288px"
+                className="w-full max-w-72"
+              />
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
               <h3 className="mt-2 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{person.name}</h3>
               <p className="mt-4 max-w-xl leading-relaxed text-slate">{person.bio}</p>
             </Reveal>

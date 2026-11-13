@@ -54,3 +54,107 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/*
+ * Team portraits: frameless photos that melt into the page over a layered brand glow.
+ *
+ * - Fades use many eased stops (an approximate ease-out curve) instead of two linear
+ *   stops, so there is no visible edge where the photo ends.
+ * - Glow colours mix in OKLab where supported, which keeps blue-to-sky blends vivid
+ *   instead of passing through a greyish middle; plain sRGB is the fallback.
+ * - A faint noise layer over the glow breaks up colour banding on 8-bit screens.
+ * - The photos have white backgrounds, so multiply blending lets the glow show
+ *   through the background while leaving the person untouched.
+ */
+.team-photo {
+  isolation: isolate;
+  --fade-y: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.55) 3%,
+    rgb(0 0 0 / 0.88) 7%,
+    #000 11%,
+    #000 56%,
+    rgb(0 0 0 / 0.95) 61%,
+    rgb(0 0 0 / 0.86) 66%,
+    rgb(0 0 0 / 0.73) 71%,
+    rgb(0 0 0 / 0.57) 76%,
+    rgb(0 0 0 / 0.41) 81%,
+    rgb(0 0 0 / 0.27) 86%,
+    rgb(0 0 0 / 0.15) 91%,
+    rgb(0 0 0 / 0.06) 96%,
+    rgb(0 0 0 / 0) 100%
+  );
+  --fade-x: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.3) 3%,
+    rgb(0 0 0 / 0.65) 7%,
+    rgb(0 0 0 / 0.9) 11%,
+    #000 15%,
+    #000 85%,
+    rgb(0 0 0 / 0.9) 89%,
+    rgb(0 0 0 / 0.65) 93%,
+    rgb(0 0 0 / 0.3) 97%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+.team-photo__img {
+  mix-blend-mode: multiply;
+  -webkit-mask-image: var(--fade-y), var(--fade-x);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fade-y), var(--fade-x);
+  mask-composite: intersect;
+}
+
+.team-photo__glow {
+  position: absolute;
+  inset: 4% 6% 8%;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(18px);
+  background:
+    radial-gradient(38% 34% at 50% 34%, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0) 100%),
+    radial-gradient(46% 42% at 62% 30%, rgb(24 200 230 / 0.5), rgb(24 200 230 / 0) 100%),
+    radial-gradient(58% 52% at 38% 62%, rgb(10 79 214 / 0.42), rgb(10 79 214 / 0) 100%),
+    radial-gradient(70% 62% at 50% 52%, rgb(7 121 166 / 0.22), rgb(7 121 166 / 0) 100%);
+}
+
+@supports (background: radial-gradient(in oklab, red, blue)) {
+  .team-photo__glow {
+    background:
+      radial-gradient(38% 34% at 50% 34% in oklab, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0) 100%),
+      radial-gradient(46% 42% at 62% 30% in oklab, rgb(24 200 230 / 0.5), rgb(24 200 230 / 0) 100%),
+      radial-gradient(58% 52% at 38% 62% in oklab, rgb(10 79 214 / 0.42), rgb(10 79 214 / 0) 100%),
+      radial-gradient(70% 62% at 50% 52% in oklab, rgb(7 121 166 / 0.22), rgb(7 121 166 / 0) 100%);
+  }
+}
+
+.team-photo__glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .team-photo__glow {
+    animation: team-glow 6s ease-in-out infinite;
+  }
+}
+
+@keyframes team-glow {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
