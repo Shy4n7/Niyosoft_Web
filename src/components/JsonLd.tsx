@@ -9,7 +9,7 @@ const organization = {
   logo: `${site.url}/images/logo-mark.png`,
   image: `${site.url}/opengraph-image.png`,
   description: site.description,
-  telephone: site.phone,
+  telephone: [site.phone, site.phone2],
   email: site.email,
   foundingDate: site.foundedDate,
   founder: { "@type": "Person", name: site.founder },

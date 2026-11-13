@@ -29,7 +29,9 @@ export function Footer() {
           <h2 className="font-display text-sm font-bold uppercase tracking-wider text-navy">Reach us</h2>
           <ul className="mt-2 text-sm text-slate">
             <li><a href={site.phoneHref} className="inline-block py-2 hover:text-brand">{site.phone}</a></li>
+            <li><a href={site.phone2Href} className="inline-block py-2 hover:text-brand">{site.phone2}</a></li>
             <li><a href={`mailto:${site.email}`} className="inline-block py-2 hover:text-brand"><EmailText email={site.email} /></a></li>
+            <li><a href={`mailto:${site.hr.email}`} className="inline-block py-2 hover:text-brand">HR: <EmailText email={site.hr.email} /></a></li>
             <li className="mt-2 leading-relaxed">{fullAddress}</li>
           </ul>
         </div>

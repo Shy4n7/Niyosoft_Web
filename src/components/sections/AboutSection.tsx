@@ -14,7 +14,7 @@ const team = [
     name: site.hr.name,
     role: site.hr.role,
     photo: site.hr.photo,
-    bio: `${site.hr.name} leads people and culture at ${site.name}. He looks after hiring, onboarding and the growth of the team, building a workplace where skilled people can do their best work for our clients.`,
+    bio: `${site.hr.name} leads people and culture at ${site.name}. He looks after hiring, onboarding and the growth of the team, building a workplace where skilled people can do their best work for our clients. For careers and HR enquiries, email ${site.hr.email}.`,
   },
 ];
 

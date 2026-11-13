@@ -7,8 +7,14 @@ import { SectionHeading } from "./SectionHeading";
 
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
 
+const phones = [
+  { value: site.phone, href: site.phoneHref },
+  { value: site.phone2, href: site.phone2Href },
+];
+
+const cardClass = "group relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5";
+
 const channels = [
-  { icon: "phone", label: "Call us", value: site.phone, href: site.phoneHref, external: false, copy: site.phone },
   { icon: "chat", label: "WhatsApp", value: "Chat with us", href: site.whatsappHref, external: true, copy: null },
   { icon: "mail", label: "Email", value: site.email, href: `mailto:${site.email}`, external: false, copy: site.email },
 ] as const;
@@ -19,11 +25,27 @@ export function ContactSection() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Contact" title="Let's talk about" accent="your problem" intro="Call, message or email us. We usually reply the same day." />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5">
+            <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">
+              <Icon name="phone" />
+            </div>
+            <p className="mt-4 text-sm font-medium text-slate">Call us</p>
+            <ul className="mt-1 space-y-2">
+              {phones.map((phone) => (
+                <li key={phone.href} className="flex flex-wrap items-center justify-between gap-2">
+                  <a href={phone.href} aria-label={`Call us on ${phone.value}`} className="font-display text-lg font-bold text-navy hover:text-brand">
+                    {phone.value}
+                  </a>
+                  <CopyButton value={phone.value} label={`phone number ${phone.value}`} />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
           {channels.map((channel, index) => (
             <Reveal
               key={channel.label}
-              delay={index * 120}
-              className={`group relative rounded-2xl border border-navy/10 bg-paper p-6 transition hover:border-brand hover:shadow-xl hover:shadow-navy/5 ${channel.label === "Email" ? "sm:col-span-2 lg:col-span-1" : ""}`}
+              delay={(index + 1) * 120}
+              className={`${cardClass} ${channel.label === "Email" ? "sm:col-span-2 lg:col-span-1" : ""}`}
             >
               <a href={channel.href} {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block">
                 <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">
@@ -42,6 +64,20 @@ export function ContactSection() {
             </Reveal>
           ))}
         </div>
+        <Reveal className={`${cardClass} mt-5 flex flex-col gap-4 sm:flex-row sm:items-center`}>
+          <div className="bg-brand-gradient inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white">
+            <Icon name="mail" />
+          </div>
+          <a href={`mailto:${site.hr.email}`} className="block min-w-0 flex-1">
+            <p className="text-sm font-medium text-slate">HR &amp; careers &middot; {site.hr.name}, {site.hr.role}</p>
+            <p className="mt-1 font-display text-lg font-bold text-navy group-hover:text-brand">
+              <EmailText email={site.hr.email} />
+            </p>
+          </a>
+          <div className="absolute right-5 top-5">
+            <CopyButton value={site.hr.email} label="HR email address" />
+          </div>
+        </Reveal>
         <Reveal className="mt-6 grid overflow-hidden rounded-2xl border border-navy/10 bg-paper lg:grid-cols-[1fr_1.6fr]">
           <div className="p-6 sm:p-8">
             <div className="bg-brand-gradient inline-flex h-12 w-12 items-center justify-center rounded-xl text-white">

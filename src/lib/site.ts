@@ -9,13 +9,16 @@ export const site = {
   foundedDate: "2021-01-14",
   foundedYear: 2021,
   udyam: "UDYAM-TN-03-0129180",
-  phone: "+91 99425 67463",
-  phoneHref: "tel:+919942567463",
-  whatsappHref: "https://wa.me/919942567463",
+  phone: "+91 79041 53087",
+  phoneHref: "tel:+917904153087",
+  phone2: "+91 73394 56476",
+  phone2Href: "tel:+917339456476",
+  whatsappHref: "https://wa.me/917904153087",
   email: "niyosofttechnologies@gmail.com",
   hr: {
     name: "William Christopher",
     role: "Head HR",
+    email: "hrniyosofttechnologies@gmail.com",
     photo: "/images/william-christopher.webp",
   },
   address: {
@@ -27,6 +30,13 @@ export const site = {
     country: "IN",
   },
 } as const;
+
+/** Businesses we have worked with. Only Ganesh Department Store has a published case study. */
+export const clients: readonly { name: string; href?: string }[] = [
+  { name: "Ganesh Department Store", href: "/projects/" },
+  { name: "SS Traders" },
+  { name: "Galku Exports" },
+];
 
 export const fullAddress = `${site.address.street}, ${site.address.locality}, ${site.address.district}, ${site.address.region} ${site.address.postalCode}`;
 
