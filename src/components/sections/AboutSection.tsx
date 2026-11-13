@@ -2,6 +2,7 @@ import Image from "next/image";
 import { site } from "@/lib/site";
 import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { TeamSlider } from "./TeamSlider";
 
 const team = [
   {
@@ -24,8 +25,8 @@ export function AboutSection() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="About us"
-          title="Technology with a"
-          accent="purpose"
+          title="Meet the"
+          accent="team"
           intro={`Founded in Pollachi in ${site.foundedYear}, ${site.name} builds dependable software for businesses. Meet the people behind it.`}
         />
         <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-10">
@@ -47,6 +48,15 @@ export function AboutSection() {
               <p className="mt-4 max-w-xl leading-relaxed text-slate">{person.bio}</p>
             </Reveal>
           ))}
+        </div>
+        <div className="mt-20">
+          <Reveal className="text-center">
+            <h3 className="font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">The people who build it</h3>
+            <p className="mt-2 text-slate">Our developers design, build and support every product we deliver.</p>
+          </Reveal>
+          <Reveal className="mt-8">
+            <TeamSlider />
+          </Reveal>
         </div>
         <Reveal className="mt-16 grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl bg-paper p-6">
