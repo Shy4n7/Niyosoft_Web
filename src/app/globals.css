@@ -54,29 +54,3 @@ body {
   background-clip: text;
   color: transparent;
 }
-
-/*
- * Team portraits: frameless photos whose bottom edge fades into the page.
- * The fade uses many eased stops (an approximate ease-out curve) instead of two
- * linear stops, so there is no visible line where the photo ends. The photos have
- * white backgrounds; multiply blending keeps them indistinguishable from the page.
- */
-.team-photo__img {
-  mix-blend-mode: multiply;
-  --fade-bottom: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 58%,
-    rgb(0 0 0 / 0.95) 63%,
-    rgb(0 0 0 / 0.86) 68%,
-    rgb(0 0 0 / 0.73) 73%,
-    rgb(0 0 0 / 0.57) 78%,
-    rgb(0 0 0 / 0.41) 83%,
-    rgb(0 0 0 / 0.27) 88%,
-    rgb(0 0 0 / 0.15) 92%,
-    rgb(0 0 0 / 0.06) 96%,
-    rgb(0 0 0 / 0) 100%
-  );
-  -webkit-mask-image: var(--fade-bottom);
-  mask-image: var(--fade-bottom);
-}

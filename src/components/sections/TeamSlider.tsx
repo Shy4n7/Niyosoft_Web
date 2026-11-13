@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type FocusEvent, type PointerEvent, type TouchEvent } from "react";
 import { developers, site } from "@/lib/site";
 import { Icon } from "../Icon";
-import { TeamPhoto } from "../TeamPhoto";
 
 /** Time each person stays on screen. */
 const AUTOPLAY_MS = 3000;
@@ -29,7 +29,6 @@ export function TeamSlider() {
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  // One timer per slide: any change of slide, pause or delay restarts it.
   // Only play while the slider is on screen, so visitors always meet the first person
   // when they scroll to it, and it does not move while nobody is looking.
   useEffect(() => {
@@ -40,6 +39,7 @@ export function TeamSlider() {
     return () => observer.disconnect();
   }, []);
 
+  // One timer per slide: any change of slide, pause or delay restarts it.
   useEffect(() => {
     if (!inView || paused || reducedMotion) return;
     const timer = setTimeout(() => {
@@ -109,14 +109,19 @@ export function TeamSlider() {
                 aria-label={`${i + 1} of ${count}: ${person.name}`}
                 aria-hidden={i !== index}
                 inert={i !== index}
-                className="grid w-full shrink-0 content-start items-center gap-6 md:content-center px-6 py-4 sm:px-10 md:grid-cols-[16rem_1fr] md:gap-12"
+                className="grid w-full shrink-0 content-start items-center gap-8 bg-paper md:content-center p-6 sm:p-10 md:grid-cols-[16rem_1fr] md:gap-12"
               >
-                <TeamPhoto
-                  src={person.photo}
-                  alt={`${person.name}, ${person.role} at ${site.name}`}
-                  sizes="256px"
-                  className="mx-auto w-full max-w-64"
-                />
+                <figure className="relative mx-auto w-full max-w-64">
+                  <div className="bg-brand-gradient absolute -bottom-3 -right-3 h-full w-full rounded-3xl" aria-hidden="true" />
+                  <Image
+                    src={person.photo}
+                    alt={`${person.name}, ${person.role} at ${site.name}`}
+                    width={640}
+                    height={640}
+                    sizes="256px"
+                    className="relative aspect-square h-auto w-full rounded-3xl border border-navy/10 bg-white object-cover"
+                  />
+                </figure>
                 <div className="text-center md:text-left">
                   <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
                   <h4 className="mt-2 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{person.name}</h4>
