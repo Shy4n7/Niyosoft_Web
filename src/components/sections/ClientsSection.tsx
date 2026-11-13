@@ -17,7 +17,7 @@ export function ClientsSection() {
     <section id="clients" className="scroll-mt-20 bg-paper px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Our clients" title="Businesses that" accent="trust us" intro="Businesses that rely on Niyosoft for their software and IT needs." />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-3">
+        <ul className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
           {clients.map((client, index) => (
             <li key={client.name}>
               <Reveal delay={index * 120} className="flex h-full flex-col items-center rounded-2xl border border-navy/10 bg-white p-6 text-center">
