@@ -15,7 +15,7 @@ export function Logo({ light = false, size = "sm" }: { light?: boolean; size?: L
     <Link href="/" className="inline-flex flex-col items-center leading-none" aria-label="Niyosoft Technologies home">
       <Image src="/images/logo-mark-sm.png" alt="" width={81} height={84} priority className={`${s.mark} w-auto`} />
       <span className={`${s.gap} flex flex-col items-center`}>
-        <span className={`font-brand font-extrabold tracking-tight ${s.name} ${light ? "text-white" : "text-navy"}`}>NIYOSOFT</span>
+        <span className={`font-brand font-extrabold tracking-tight ${s.name} ${light ? "text-white" : "text-logo-gradient"}`}>NIYOSOFT</span>
         <span className={`font-brand font-semibold ${s.sub} pl-[0.36em] ${light ? "text-white/70" : "text-navy/80"}`}>TECHNOLOGIES</span>
       </span>
     </Link>
