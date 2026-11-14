@@ -45,11 +45,24 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#0b1a5c" };
 
+/**
+ * Runs before the page renders. Marks JS as available, stops the browser restoring the
+ * old scroll position, and on a reload drops any #section from the address so the page
+ * starts at the top instead of jumping to that section. First visits to a #section link
+ * still go to that section.
+ */
+const RELOAD_SCRIPT = [
+  "document.documentElement.classList.add('js');",
+  "history.scrollRestoration='manual';",
+  "var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];",
+  "if(n&&n.type==='reload'&&location.hash)history.replaceState(history.state,'',location.pathname+location.search);",
+].join("");
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-IN" className={`${inter.variable} ${montserrat.variable} ${jakarta.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');history.scrollRestoration='manual'" }} />
+        <script dangerouslySetInnerHTML={{ __html: RELOAD_SCRIPT }} />
       </head>
       <body className="font-sans">
         <JsonLd />

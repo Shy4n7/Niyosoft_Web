@@ -34,9 +34,9 @@ export function ServicesGrid() {
                 onClick={() => toggle(service.slug)}
                 aria-expanded={expanded}
                 aria-controls={panelId}
-                className="relative flex w-full items-center gap-4 px-4 py-3.5 text-left sm:items-start sm:p-6"
+                className="relative flex w-full items-center gap-4 px-4 py-3.5 text-left transition-transform active:scale-[0.99] motion-reduce:active:scale-100 sm:items-start sm:p-6"
               >
-                <span className="bg-brand-gradient inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md shadow-brand/20 sm:h-12 sm:w-12 sm:rounded-2xl">
+                <span className={`bg-brand-gradient inline-flex h-10 w-10 shrink-0 transition-transform duration-300 motion-reduce:transition-none ${expanded ? "scale-110" : ""} items-center justify-center rounded-xl text-white shadow-md shadow-brand/20 sm:h-12 sm:w-12 sm:rounded-2xl`}>
                   <Icon name={service.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -49,15 +49,26 @@ export function ServicesGrid() {
                 </span>
                 <Icon name="arrow" className={`h-5 w-5 shrink-0 text-brand transition-transform sm:hidden ${expanded ? "-rotate-90" : "rotate-90"}`} />
               </button>
-              <div id={panelId} hidden={!expanded} className="relative px-4 pb-4 sm:px-6 sm:pb-6">
-                <p className="mb-3 text-sm leading-relaxed text-slate sm:hidden">{service.summary}</p>
-                <ul className="grid gap-2 border-t border-navy/10 pt-4">
-                  {service.points.map((point) => (
-                    <li key={point} className="flex items-start gap-2.5 text-sm font-medium text-navy">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand" /> {point}
-                    </li>
-                  ))}
-                </ul>
+              {/* Grows open smoothly: the grid row animates from 0fr to 1fr while the content fades and slides in. */}
+              <div
+                id={panelId}
+                inert={!expanded}
+                className={`relative grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+              >
+                <div className="overflow-hidden">
+                  <div
+                    className={`px-4 pb-4 transition duration-300 ease-out motion-reduce:transition-none sm:px-6 sm:pb-6 ${expanded ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"}`}
+                  >
+                    <p className="mb-3 text-sm leading-relaxed text-slate sm:hidden">{service.summary}</p>
+                    <ul className="grid gap-2 border-t border-navy/10 pt-4">
+                      {service.points.map((point) => (
+                        <li key={point} className="flex items-start gap-2.5 text-sm font-medium text-navy">
+                          <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand" /> {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </Reveal>
           </li>

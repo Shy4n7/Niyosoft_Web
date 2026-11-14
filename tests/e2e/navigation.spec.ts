@@ -53,6 +53,18 @@ test.describe("Navigation", () => {
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   });
 
+  test("reloading with a section in the address starts at the top", async ({ page }) => {
+    await page.goto("/#contact");
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1000);
+
+    await page.reload();
+
+    await page.waitForLoadState("load");
+    await page.waitForTimeout(500);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect(new URL(page.url()).hash).toBe("");
+  });
+
   test("footer legal links open their pages", async ({ page }) => {
     await page.goto("/");
     const footer = page.getByRole("contentinfo");
