@@ -1,6 +1,5 @@
-import { Reveal } from "../Reveal";
 import { SectionHeading } from "./SectionHeading";
-import { ServicesTabs } from "./ServicesTabs";
+import { ServicesGrid } from "./ServicesGrid";
 
 export function ServicesSection() {
   return (
@@ -12,9 +11,7 @@ export function ServicesSection() {
           accent="real problems"
           intro="Every project starts with one question: what is getting in the way of your business? Then we build the right tool to remove it."
         />
-        <Reveal delay={150}>
-          <ServicesTabs />
-        </Reveal>
+        <ServicesGrid />
       </div>
     </section>
   );

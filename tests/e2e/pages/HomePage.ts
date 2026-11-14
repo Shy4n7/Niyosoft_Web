@@ -2,13 +2,11 @@ import { expect, type Locator, type Page } from "@playwright/test";
 
 export class HomePage {
   readonly mainNav: Locator;
-  readonly serviceTabs: Locator;
-  readonly servicePanel: Locator;
+  readonly serviceCards: Locator;
 
   constructor(private readonly page: Page) {
     this.mainNav = page.getByRole("navigation", { name: "Main" });
-    this.serviceTabs = page.getByRole("tab");
-    this.servicePanel = page.getByRole("tabpanel");
+    this.serviceCards = page.locator("section#services button[aria-expanded]");
   }
 
   async goto(hash = ""): Promise<void> {

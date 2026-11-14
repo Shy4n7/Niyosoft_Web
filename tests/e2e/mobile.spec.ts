@@ -30,14 +30,16 @@ test.describe("Mobile", () => {
     await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
   });
 
-  test("service tabs sit in one row that scrolls sideways", async ({ page }) => {
+  test("service cards stack in one column and open on tap", async ({ page }) => {
     const home = new HomePage(page);
-    await home.goto();
-    const tops = await home.serviceTabs.evaluateAll((tabs) => tabs.map((tab) => Math.round(tab.getBoundingClientRect().top)));
+    await home.goto("#services");
+    const lefts = await home.serviceCards.evaluateAll((cards) => cards.map((card) => Math.round(card.getBoundingClientRect().left)));
+    expect(new Set(lefts).size).toBe(1);
 
-    expect(new Set(tops).size).toBe(1);
-    await home.serviceTabs.last().click();
-    await expect(home.servicePanel.getByRole("heading")).toHaveText("Software Installation & IT Support");
+    const card = home.serviceCards.filter({ hasText: "Software Installation & IT Support" });
+    await card.click();
+    await expect(card).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator("#service-it-support")).toContainText("Troubleshooting");
   });
 
   test("pages do not scroll sideways", async ({ page }) => {
