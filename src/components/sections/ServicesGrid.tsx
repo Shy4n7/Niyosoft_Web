@@ -18,7 +18,7 @@ export function ServicesGrid() {
     });
 
   return (
-    <ul className="mt-12 grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="mt-10 grid items-start gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
       {services.map((service, index) => {
         const expanded = open.has(service.slug);
         const panelId = `service-${service.slug}`;
@@ -26,7 +26,7 @@ export function ServicesGrid() {
           <li key={service.slug}>
             <Reveal
               delay={(index % 3) * 100}
-              className={`group relative overflow-hidden rounded-3xl border bg-white transition ${expanded ? "border-brand/40 shadow-xl shadow-navy/5" : "border-navy/10 hover:border-brand/40 hover:shadow-lg hover:shadow-navy/5"}`}
+              className={`group relative overflow-hidden rounded-2xl border bg-white transition sm:rounded-3xl ${expanded ? "border-brand/40 shadow-xl shadow-navy/5" : "border-navy/10 hover:border-brand/40 hover:shadow-lg hover:shadow-navy/5"}`}
             >
               <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-sky/15 blur-2xl" aria-hidden="true" />
               <button
@@ -34,21 +34,23 @@ export function ServicesGrid() {
                 onClick={() => toggle(service.slug)}
                 aria-expanded={expanded}
                 aria-controls={panelId}
-                className="relative flex w-full items-start gap-4 p-6 text-left"
+                className="relative flex w-full items-center gap-4 px-4 py-3.5 text-left sm:items-start sm:p-6"
               >
-                <span className="bg-brand-gradient inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-md shadow-brand/20">
-                  <Icon name={service.icon} className="h-6 w-6" />
+                <span className="bg-brand-gradient inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md shadow-brand/20 sm:h-12 sm:w-12 sm:rounded-2xl">
+                  <Icon name={service.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-display text-lg font-bold leading-snug text-navy">{service.title}</span>
-                  <span className="mt-1.5 block text-sm leading-relaxed text-slate">{service.summary}</span>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
+                  <span className="block font-display text-base font-bold leading-snug text-navy sm:text-lg">{service.title}</span>
+                  <span className="mt-1.5 hidden text-sm leading-relaxed text-slate sm:block">{service.summary}</span>
+                  <span className="mt-3 hidden items-center gap-1.5 text-sm font-semibold text-brand sm:inline-flex">
                     {expanded ? "Show less" : "What's included"}
                     <Icon name="arrow" className={`h-4 w-4 transition-transform ${expanded ? "-rotate-90" : "rotate-90"}`} />
                   </span>
                 </span>
+                <Icon name="arrow" className={`h-5 w-5 shrink-0 text-brand transition-transform sm:hidden ${expanded ? "-rotate-90" : "rotate-90"}`} />
               </button>
-              <div id={panelId} hidden={!expanded} className="relative px-6 pb-6">
+              <div id={panelId} hidden={!expanded} className="relative px-4 pb-4 sm:px-6 sm:pb-6">
+                <p className="mb-3 text-sm leading-relaxed text-slate sm:hidden">{service.summary}</p>
                 <ul className="grid gap-2 border-t border-navy/10 pt-4">
                   {service.points.map((point) => (
                     <li key={point} className="flex items-start gap-2.5 text-sm font-medium text-navy">
