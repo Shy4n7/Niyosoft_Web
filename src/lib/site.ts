@@ -63,7 +63,7 @@ export type Client = {
 /** Businesses we have worked with. Only Ganesh Department Stores has a published case study. */
 export const clients: readonly Client[] = [
   { name: "Ganesh Department Stores", logo: { src: "/images/client-ganesh-department-stores.webp", width: 183, height: 277 }, href: "/projects/" },
-  { name: "Galuku Exports", logo: { src: "/images/client-galuku.webp", width: 216, height: 159 } },
+  { name: "Galuku Exports India Pvt. Ltd.", logo: { src: "/images/client-galuku.webp", width: 216, height: 159 } },
 ];
 
 export type TeamMember = { name: string; role: string; photo: string; bio: string };
