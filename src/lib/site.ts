@@ -20,6 +20,27 @@ export const site = {
     role: "Head HR",
     email: "hrniyosofttechnologies@gmail.com",
     photo: "/images/william-christopher.webp",
+    /** IT-sector roles from his resume, most recent first. Roles outside IT are left out. */
+    experience: [
+      {
+        role: "Recruitment Manager",
+        company: "TechStar Group",
+        period: "Sep 2021 to Mar 2023",
+        summary: "Ran HR operations and vendor management for the Coimbatore branch, and single-handedly hired 35 technically strong recruiters.",
+      },
+      {
+        role: "Senior HR Executive",
+        company: "IDC Technologies Solutions India Pvt Ltd",
+        period: "Jan 2019 to Sep 2021",
+        summary: "Handled recruitment and HR administration for the Coimbatore branch, from sourcing on Naukri and LinkedIn to onboarding, benefits and employee engagement.",
+      },
+      {
+        role: "Sourcing and Admin Executive",
+        company: "Themesoft Inc",
+        period: "Nov 2017 to Dec 2018",
+        summary: "Managed office administration and employee records, and sourced and scheduled candidates for internal hiring.",
+      },
+    ],
   },
   address: {
     street: "No 2/281A, Selvaganapathy Nagar, Unjavelampatti",

@@ -15,7 +15,8 @@ const team = [
     name: site.hr.name,
     role: site.hr.role,
     photo: site.hr.photo,
-    bio: `${site.hr.name} leads people and culture at ${site.name}. He looks after hiring, onboarding and the growth of the team, building a workplace where skilled people can do their best work for our clients. For careers and HR enquiries, email ${site.hr.email}.`,
+    bio: `${site.hr.name} leads people and culture at ${site.name}. He brings years of HR experience from IT companies, covering technical recruitment, onboarding, payroll coordination, vendor management and employee engagement. He builds strong teams and makes sure every new joiner settles in well. For careers and HR enquiries, email ${site.hr.email}.`,
+    experience: site.hr.experience,
   },
 ];
 
@@ -46,6 +47,23 @@ export function AboutSection() {
               <p className="mt-9 text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
               <h3 className="mt-2 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{person.name}</h3>
               <p className="mt-4 max-w-xl leading-relaxed text-slate">{person.bio}</p>
+              {person.experience && (
+                <div className="mt-6 w-full max-w-xl text-left">
+                  <h4 className="text-center text-sm font-semibold uppercase tracking-[0.14em] text-navy sm:text-left">Experience in IT</h4>
+                  <ol className="mt-3 space-y-4 border-l-2 border-brand/20 pl-5">
+                    {person.experience.map((job) => (
+                      <li key={job.company} className="relative">
+                        <span className="bg-brand-gradient absolute -left-[1.6rem] top-1.5 h-3 w-3 rounded-full ring-4 ring-white" aria-hidden="true" />
+                        <p className="font-display font-bold text-navy">
+                          {job.role} &middot; <span className="text-brand">{job.company}</span>
+                        </p>
+                        <p className="text-xs font-medium uppercase tracking-wider text-slate/80">{job.period}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-slate">{job.summary}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
             </Reveal>
           ))}
         </div>
