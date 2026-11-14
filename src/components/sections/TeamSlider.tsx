@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type FocusEvent, type PointerEvent, type TouchEvent } from "react";
 import { developers, site } from "@/lib/site";
+import { ExperienceList } from "../ExperienceList";
 import { Icon } from "../Icon";
 
 /** Time each person stays on screen. */
@@ -126,6 +127,7 @@ export function TeamSlider() {
                   <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">{person.role}</p>
                   <h4 className="mt-2 font-display text-2xl font-bold tracking-[-0.015em] text-navy sm:text-3xl">{person.name}</h4>
                   <p className="mt-4 leading-relaxed text-slate">{person.bio}</p>
+                  {person.experience && <ExperienceList title="Experience" jobs={person.experience} className="mx-auto mt-6 md:mx-0" />}
                 </div>
               </article>
             ))}

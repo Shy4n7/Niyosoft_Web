@@ -66,7 +66,13 @@ export const clients: readonly Client[] = [
   { name: "Galuku Exports", logo: { src: "/images/client-galuku.webp", width: 216, height: 159 } },
 ];
 
-export type TeamMember = { name: string; role: string; photo: string; bio: string };
+export type TeamMember = {
+  name: string;
+  role: string;
+  photo: string;
+  bio: string;
+  experience?: readonly { role: string; company: string; period: string; summary: string }[];
+};
 
 /** Developers shown in the auto-sliding "people who build it" carousel. */
 export const developers: readonly TeamMember[] = [
@@ -74,7 +80,15 @@ export const developers: readonly TeamMember[] = [
     name: "Shyan Paul S",
     role: "Lead Developer",
     photo: "/images/shyan-paul.webp",
-    bio: "Shyan leads development at Niyosoft Technologies. He designs and builds the company's software, from client apps to this website, and turns a business problem into a working product. He makes sure every project is fast, reliable and easy to use.",
+    bio: "Shyan leads development at Niyosoft Technologies, building the company's software from client apps to this website. A B.Sc. Artificial Intelligence and Machine Learning student at Rathinam Global University, Coimbatore, he works across RAG systems, computer vision and quantum machine learning. His projects include a galaxy morphology classifier with 87.97% accuracy and a quantum-enhanced Vision Transformer for exoplanet detection, and he has a merged contribution in PyTorch's official examples. He is IBM certified in Quantum Machine Learning and Machine Learning with Python, and a Qiskit Advocate.",
+    experience: [
+      {
+        role: "Machine Learning Intern",
+        company: "AdroIT Technologies Innovative Solutions Pvt Ltd",
+        period: "Jul 2026 to Oct 2026",
+        summary: "Built and deployed production RAG chatbots with LlamaIndex, FAISS, Gemini and FastAPI, and cut average chatbot response time by 77%, from 8.7s to 2s.",
+      },
+    ],
   },
   {
     name: "Vishal P",
