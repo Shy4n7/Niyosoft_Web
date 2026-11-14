@@ -27,6 +27,20 @@ test.describe("Services", () => {
     await expect(page.locator("#service-payments")).toBeHidden();
   });
 
+  test("an opened card stays visible", async ({ page }) => {
+    const home = new HomePage(page);
+    await home.goto("#services");
+    const card = home.serviceCards.filter({ hasText: "Payment Integration" });
+    await card.scrollIntoViewIfNeeded();
+    const wrapper = card.locator("xpath=..");
+    await expect(wrapper).toHaveCSS("opacity", "1");
+
+    await card.click();
+    await page.waitForTimeout(1000);
+    await expect(wrapper).toHaveCSS("opacity", "1");
+    await expect(page.locator("#service-payments")).toBeVisible();
+  });
+
   test("cards open with the keyboard", async ({ page }) => {
     const home = new HomePage(page);
     await home.goto("#services");
