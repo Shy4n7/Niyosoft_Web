@@ -4,8 +4,9 @@ import { services } from "@/lib/services";
 import { Icon } from "../Icon";
 
 const ORBIT_RADIUS_PERCENT = 41;
-const HIDDEN_FROM_ORBIT = new Set(["online-ordering", "payments"]);
-const orbitServices = services.filter((service) => !HIDDEN_FROM_ORBIT.has(service.slug));
+// The orbit has room for four services; these are the most eye-catching ones.
+const ORBIT_SLUGS = ["mobile-apps", "websites", "ai-chatbots", "custom-software"];
+const orbitServices = ORBIT_SLUGS.map((slug) => services.find((service) => service.slug === slug)).filter((service) => service !== undefined);
 const SPIN = "motion-safe:animate-[spin_70s_linear_infinite] group-hover:[animation-play-state:paused]";
 const COUNTER_SPIN = "motion-safe:animate-[spin_70s_linear_infinite_reverse] group-hover:[animation-play-state:paused]";
 

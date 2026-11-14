@@ -8,6 +8,7 @@ test.describe("Hero service orbit", () => {
 
     await expect(orbitLayer(page).locator("svg")).toHaveCount(4);
     await expect(orbitLayer(page).getByText("Mobile Apps", { exact: true })).toBeVisible();
+    await expect(orbitLayer(page).getByText("AI Chatbots", { exact: true })).toBeVisible();
     await expect(orbitLayer(page).getByText("Payments", { exact: true })).toHaveCount(0);
     await expect(orbitLayer(page).getByText("Online Ordering", { exact: true })).toHaveCount(0);
     await expect(page.locator('[aria-hidden="true"]', { has: orbitLayer(page) })).toHaveCount(1);

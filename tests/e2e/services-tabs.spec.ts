@@ -25,7 +25,7 @@ test.describe("Services tabs", () => {
     const home = new HomePage(page);
     await home.goto();
 
-    await expect(home.serviceTabs).toHaveCount(6);
+    await expect(home.serviceTabs).toHaveCount(9);
     await expect(home.serviceTabs.first()).toHaveAttribute("tabindex", "0");
     for (const tab of await home.serviceTabs.all().then((tabs) => tabs.slice(1))) {
       await expect(tab).toHaveAttribute("tabindex", "-1");
