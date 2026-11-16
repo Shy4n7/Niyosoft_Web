@@ -29,7 +29,7 @@ export function AboutSection() {
           eyebrow="About us"
           title="Meet the"
           accent="team"
-          intro={`Founded in Pollachi in ${site.foundedYear}, ${site.name} builds dependable software for businesses. Meet the people behind it.`}
+          intro={`Founded in ${site.foundedYear}, ${site.name} builds dependable software for businesses. Meet the people behind it.`}
         />
         <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-10">
           {team.map((person, index) => (
