@@ -10,7 +10,7 @@ const team = [
     name: site.founder,
     role: "Founder & Proprietor",
     photo: "/images/ashok-thomas.webp",
-    bio: `${site.founder} founded ${site.name} on 14 January ${site.foundedYear} in Pollachi with a simple aim: help businesses solve everyday problems with software. He sets the direction of the company, works closely with clients to understand what they really need, and makes sure every project is delivered with care, honesty and long-term support.`,
+    bio: `${site.founder} founded ${site.name} on 14 January ${site.foundedYear} with a simple aim: help businesses solve everyday problems with software. He sets the direction of the company, works closely with clients to understand what they really need, and makes sure every project is delivered with care, honesty and long-term support.`,
   },
   {
     name: site.hr.name,
