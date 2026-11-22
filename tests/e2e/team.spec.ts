@@ -79,7 +79,7 @@ test.describe("Meet the team", () => {
     await expect(active).toHaveText("Vishal P");
     await slider.getByRole("button", { name: "Previous person" }).click();
     await slider.getByRole("button", { name: "Previous person" }).click();
-    await expect(active).toHaveText("Nithin Sachin R");
+    await expect(active).toHaveText("Radha Krishnan");
   });
 
   test("slider stays still when reduced motion is requested", async ({ page }) => {

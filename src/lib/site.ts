@@ -88,6 +88,12 @@ export const developers: readonly TeamMember[] = [
     photo: "/images/nithin-sachin.webp",
     bio: "Nithin works on the systems behind the apps: databases, payments and the logic that keeps orders and data flowing. He makes sure what we build stays secure and dependable as a business grows.",
   },
+  {
+    name: "Radha Krishnan",
+    role: "Scrum Master, ETL Analyst & AI Prompt Analyst",
+    photo: "/images/radha-krishnan.webp",
+    bio: "Radha keeps projects on track as Scrum Master, running sprints and keeping the team and clients in step. As an ETL and AI Prompt Analyst, he moves and prepares business data and designs the prompts behind our AI tools.",
+  },
 ];
 
 export const fullAddress = `${site.address.street}, ${site.address.locality}, ${site.address.district}, ${site.address.region} ${site.address.postalCode}`;
