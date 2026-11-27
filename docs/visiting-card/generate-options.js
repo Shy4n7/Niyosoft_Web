@@ -111,6 +111,26 @@ const options = [
     front: `<div class="card m-front" id="m-front">${wedgeFront}<div class="lkw">${lockup(14)}</div></div>`,
     back: `<div class="card m-back" id="m-back">${wedgeBack}<div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
   },
+  {
+    id: 'n', title: 'Option N: Portrait', note: 'Vertical 50 x 90 mm card. Logo-led front, navy name header on the back.',
+    front: `<div class="card portrait n-front" id="n-front"><div class="lkw">${lockup(13)}</div><div class="tag">Transforming Enterprises<br>through Digital Innovation</div><div class="bar"></div></div>`,
+    back: `<div class="card portrait n-back" id="n-back"><div class="hd"><h1>Ashok Thomas</h1><div class="role">Founder</div></div><ul class="contacts">${row('phone', '<b>+91 79041 53087</b><br>+91 73394 56476')}${mail}${web}${row('pin', '2/281A, Selvaganapathy Nagar,<br>Unjavelampatti, Pollachi,<br>Coimbatore, Tamil Nadu 642003', 'addr')}</ul>${qr('c')}</div>`,
+  },
+  {
+    id: 'o', title: 'Option O: Swiss grid', note: 'Editorial layout: labelled fields and hairlines instead of icons.',
+    front: `<div class="card o-front" id="o-front"><div class="lkp">${lockup(10, 'h')}</div><div class="foot"><div><span>Est.</span>2021</div><div><span>Based in</span>Pollachi, Coimbatore</div><div><span>Online</span>niyosoft.in</div></div></div>`,
+    back: `<div class="card o-back" id="o-back"><div class="left"><h1>Ashok<br>Thomas</h1><div class="role">Founder</div><img class="q" src="assets/qr.svg" alt="QR code for niyosoft.in"></div><dl class="right"><div><dt>Phone</dt><dd>+91 79041 53087<br>+91 73394 56476</dd></div><div><dt>Email</dt><dd>niyosofttechnologies@gmail.com</dd></div><div><dt>Web</dt><dd>niyosoft.in</dd></div><div><dt>Office</dt><dd>2/281A, Selvaganapathy Nagar,<br>Unjavelampatti, Pollachi,<br>Coimbatore, Tamil Nadu 642003</dd></div></dl></div>`,
+  },
+  {
+    id: 'p', title: 'Option P: Executive', note: 'Name and contacts on the front with the logo. The back carries the company statement.',
+    front: `<div class="card p-front" id="p-front"><div class="lkp">${lockup(8.5, 'h')}</div><div class="who"><h1>Ashok Thomas</h1><div class="role">Founder</div></div><div class="ct">+91 79041 53087<br>+91 73394 56476<br>niyosofttechnologies@gmail.com<br>niyosoft.in<br><span>Pollachi, Coimbatore 642003</span></div><div class="rule"></div></div>`,
+    back: `<div class="card p-back" id="p-back"><div class="chip"><img src="assets/logo-mark.png" alt=""></div><div class="stmt">Transforming Enterprises<br><em>through Digital Innovation.</em></div><div class="ft"><span>NIYOSOFT TECHNOLOGIES</span><span class="u">niyosoft.in</span></div></div>`,
+  },
+  {
+    id: 'q', title: 'Option Q: Square', note: 'A 65 x 65 mm square card with a fine inset frame. Everything centred.',
+    front: `<div class="card square q-front" id="q-front"><div class="frame"></div>${lockup(16)}<div class="est">EST. 2021</div></div>`,
+    back: `<div class="card square q-back" id="q-back"><h1>Ashok Thomas</h1><div class="role">Founder</div><div class="hair"></div><p class="lines"><b>+91 79041 53087</b> &nbsp;|&nbsp; +91 73394 56476<br>niyosofttechnologies@gmail.com<br>niyosoft.in</p><p class="addr">2/281A, Selvaganapathy Nagar, Unjavelampatti,<br>Pollachi, Coimbatore, Tamil Nadu 642003</p><img class="q" src="assets/qr.svg" alt="QR code for niyosoft.in"></div>`,
+  },
 ];
 
 const css = `
@@ -346,6 +366,70 @@ const css = `
   .m-back .qr.r { right: 10mm; bottom: 6mm; }
   .m-back .qr img { width: 14mm; height: 14mm; }
   .m-back .qr span { display: none; }
+
+  .card.portrait { width: 50mm; height: 90mm; }
+  .card.square { width: 65mm; height: 65mm; }
+
+  /* N portrait */
+  .n-front { background: #fff; }
+  .n-front .lkw { position: absolute; left: 0; right: 0; top: 27mm; display: flex; justify-content: center; }
+  .n-front .tag { position: absolute; left: 0; right: 0; bottom: 9mm; text-align: center; font-size: 2.2mm; line-height: 1.45; color: var(--slate); }
+  .n-front .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 1.2mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .n-back { background: #fff; }
+  .n-back .hd { background: var(--ink); height: 23mm; padding: 7mm 5.5mm 0; position: relative; }
+  .n-back .hd::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: .8mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .n-back h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 4.6mm; color: #fff; line-height: 1.1; }
+  .n-back .role { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 2.2mm; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); margin-top: 1.2mm; }
+  .n-back .contacts { padding: 5mm 5mm 0 5.5mm; font-size: 2.3mm; row-gap: 1.6mm; }
+  .n-back .contacts .addr { font-size: 2.15mm; }
+  .n-back .qr.c { left: 0; right: 0; bottom: 6mm; }
+  .n-back .qr img { width: 15mm; height: 15mm; }
+
+  /* O swiss grid */
+  .o-front { background: #fff; }
+  .o-front .lkp { position: absolute; left: 7mm; top: 8mm; }
+  .o-front .foot { position: absolute; left: 7mm; right: 7mm; bottom: 6mm; border-top: .25mm solid var(--navy); padding-top: 2mm; display: grid; grid-template-columns: 14mm 1fr auto; column-gap: 4mm; font-size: 2.2mm; color: var(--ink); }
+  .o-front .foot span, .o-back dt { display: block; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.6mm; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); margin-bottom: .6mm; }
+  .o-back { background: #fff; display: grid; grid-template-columns: 27mm 1fr; column-gap: 5mm; padding: 6.5mm 7mm 6mm; }
+  .o-back .left { position: relative; }
+  .o-back h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 4.6mm; line-height: 1.08; color: var(--navy); }
+  .o-back .role { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 2.1mm; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin-top: 1.4mm; }
+  .o-back .q { position: absolute; left: 0; bottom: 0; width: 12mm; height: 12mm; }
+  .o-back .right { border-left: .25mm solid var(--navy); padding-left: 4mm; display: grid; align-content: start; }
+  .o-back .right > div { padding: 1mm 0; border-bottom: .15mm solid #d8dcea; }
+  .o-back .right > div:first-child { padding-top: 0; }
+  .o-back .right > div:last-child { border-bottom: 0; }
+  .o-back dd { font-size: 2.25mm; line-height: 1.3; color: var(--ink); }
+
+  /* P executive */
+  .p-front { background: #fff; }
+  .p-front .lkp { position: absolute; left: 7mm; top: 7mm; }
+  .p-front .who { position: absolute; left: 7mm; bottom: 7mm; }
+  .p-front h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 4.8mm; color: var(--navy); line-height: 1.1; }
+  .p-front .role { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 2.2mm; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin-top: 1.2mm; }
+  .p-front .ct { position: absolute; right: 7mm; bottom: 7mm; text-align: right; font-size: 2.2mm; line-height: 1.45; color: var(--ink); }
+  .p-front .ct span { color: var(--slate); }
+  .p-front .rule { position: absolute; right: 7mm; top: 7mm; width: 12mm; height: 1mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .p-back { background: var(--ink); color: #fff; }
+  .p-back .chip { position: absolute; left: 7mm; top: 6.5mm; width: 8.5mm; height: 8.5mm; background: #fff; border-radius: 1.6mm; display: flex; align-items: center; justify-content: center; }
+  .p-back .chip img { height: 6mm; width: auto; }
+  .p-back .stmt { position: absolute; left: 7mm; right: 7mm; top: 19mm; font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 4.3mm; line-height: 1.2; letter-spacing: -.01em; }
+  .p-back .stmt em { font-style: normal; background-image: linear-gradient(90deg, #4f8bff, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .p-back .ft { position: absolute; left: 7mm; right: 7mm; bottom: 6mm; display: flex; justify-content: space-between; border-top: .2mm solid rgb(255 255 255 / .25); padding-top: 2mm; font-size: 1.9mm; letter-spacing: .2em; color: rgb(255 255 255 / .7); }
+  .p-back .ft .u { letter-spacing: .05em; color: var(--sky); }
+
+  /* Q square */
+  .q-front { background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .q-front .frame { position: absolute; inset: 4mm; border: .3mm solid #cfd8f0; }
+  .q-front .est { margin-top: 5mm; font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 1.8mm; letter-spacing: .35em; padding-left: .35em; color: var(--teal); }
+  .q-back { background: #fff; text-align: center; padding-top: 7.5mm; }
+  .q-back::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1.2mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .q-back h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 4.8mm; color: var(--navy); line-height: 1.1; }
+  .q-back .role { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 2.1mm; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--teal); margin-top: 1.2mm; }
+  .q-back .hair { width: 8mm; height: .3mm; background: var(--brand); margin: 3mm auto; }
+  .q-back .lines { font-size: 2.3mm; line-height: 1.5; color: var(--ink); }
+  .q-back .addr { font-size: 2.05mm; line-height: 1.4; color: var(--slate); margin-top: 1.4mm; }
+  .q-back .q { position: absolute; left: 50%; bottom: 5.5mm; width: 13mm; height: 13mm; margin-left: -6.5mm; }
 `;
 
 const html = `<!doctype html>
