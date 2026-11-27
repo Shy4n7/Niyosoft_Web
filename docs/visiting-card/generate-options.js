@@ -40,6 +40,11 @@ const options = [
     front: `<div class="card d-front" id="d-front"><i class="f f1"></i><i class="f f2"></i><i class="f f3"></i><div class="plate">${lockup(14)}</div></div>`,
     back: `<div class="card d-back" id="d-back">${person()}${qr('tr')}<div class="rule"></div><ul class="contacts grid">${phones}${web}${mail}${addr}</ul><div class="bar"></div></div>`,
   },
+  {
+    id: 'e', title: 'Option E: First design, original logo', note: 'The first dark blue front with grid and glow, now carrying the original lockup on a white plate. Back is the first paper design.',
+    front: `<div class="card e-front" id="e-front"><div class="plate">${lockup(13)}</div><div class="tag">Transforming Enterprises through Digital Innovation</div><div class="bar"></div></div>`,
+    back: `<div class="card a-back e-back" id="e-back"><div class="stripe"></div><div class="col">${person()}${contacts()}</div>${qr('r')}</div>`,
+  },
 ];
 
 const css = `
@@ -152,6 +157,14 @@ const css = `
   .d-back .grid { grid-template-columns: 1fr 1fr; column-gap: 3mm; row-gap: 1.7mm; }
   .d-back .grid .ml, .d-back .grid .ad { grid-column: 1 / -1; }
   .d-back .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 1.5mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+
+  /* E */
+  .e-front { background: radial-gradient(60mm 40mm at 85% 105%, rgb(24 200 230 / .35), transparent 70%), linear-gradient(135deg, #0b1a5c 0%, #0a2a8f 55%, #0a4fd6 100%); display: flex; align-items: center; justify-content: center; padding-bottom: 6mm; }
+  .e-front::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(to right, rgb(255 255 255 / .05) .2mm, transparent .2mm), linear-gradient(to bottom, rgb(255 255 255 / .05) .2mm, transparent .2mm); background-size: 5mm 5mm; }
+  .e-front .plate { position: relative; width: 62mm; height: 31mm; background: #fff; border-radius: 2.2mm; display: flex; align-items: center; justify-content: center; box-shadow: 0 1mm 3mm rgb(10 18 64 / .35); }
+  .e-front .tag { position: absolute; bottom: 4.4mm; left: 0; right: 0; text-align: center; font-size: 2.1mm; letter-spacing: .06em; color: rgb(255 255 255 / .8); }
+  .e-front .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 1.2mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .e-back { background: var(--paper); }
 `;
 
 const html = `<!doctype html>
