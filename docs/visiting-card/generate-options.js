@@ -87,6 +87,16 @@ const options = [
     front: `<div class="card i-front" id="i-front">${wave}<div class="lkwrap">${lockup(13)}</div><div class="tag">Transforming Enterprises through Digital Innovation</div></div>`,
     back: `<div class="card i-back" id="i-back">${person()}${qr('tr')}<ul class="contacts grid">${phones}${web}${mail}${addr}</ul>${waveSmall}<div class="svc">Mobile Apps &nbsp;|&nbsp; Websites &nbsp;|&nbsp; Ordering &amp; Payments &nbsp;|&nbsp; IT Support</div></div>`,
   },
+  {
+    id: 'j', title: 'Option J: Clean white', note: 'Only the lockup on the front. Quiet, spacious back with a small QR code.',
+    front: `<div class="card j-front" id="j-front">${lockup(16)}<div class="bar"></div></div>`,
+    back: `<div class="card j-back" id="j-back"><div class="top"></div><div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
+  },
+  {
+    id: 'k', title: 'Option K: Clean navy back', note: 'Horizontal lockup on white with a slim blue edge. Navy back with white type.',
+    front: `<div class="card k-front" id="k-front">${lockup(15, 'h')}<div class="edge"></div></div>`,
+    back: `<div class="card k-back" id="k-back"><div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
+  },
 ];
 
 const css = `
@@ -266,6 +276,35 @@ const css = `
   .i-back .grid .ml, .i-back .grid .ad { grid-column: 1 / -1; }
   .i-back .wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 8.5mm; }
   .i-back .svc { position: absolute; left: 0; right: 0; bottom: 1.6mm; text-align: center; font-size: 1.95mm; letter-spacing: .04em; color: #fff; }
+
+  /* J */
+  .j-front { background: #fff; display: flex; align-items: center; justify-content: center; }
+  .j-front .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 1mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .j-back { background: #fff; }
+  .j-back .top { position: absolute; left: 0; right: 0; top: 0; height: 1mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+  .j-back .col { position: absolute; left: 7mm; top: 6.5mm; }
+  .j-back .person .co { display: none; }
+  .j-back .hair, .k-back .hair { width: 9mm; height: .3mm; background: var(--brand); margin: 3mm 0 3.2mm; }
+  .j-back .contacts { margin-top: 0; }
+  .j-back .qr.r { right: 7mm; bottom: 6mm; }
+  .j-back .qr img { width: 14mm; height: 14mm; }
+  .j-back .qr span { display: none; }
+
+  /* K */
+  .k-front { background: #fff; display: flex; align-items: center; padding-left: 9mm; }
+  .k-front .edge { position: absolute; right: 0; top: 0; bottom: 0; width: 3.5mm; background: linear-gradient(180deg, var(--brand), var(--sky)); }
+  .k-back { background: var(--ink); color: #fff; }
+  .k-back .col { position: absolute; left: 7mm; top: 6.5mm; }
+  .k-back .person h1 { color: #fff; }
+  .k-back .person .role { color: var(--sky); }
+  .k-back .person .co { display: none; }
+  .k-back .hair { background: var(--sky); }
+  .k-back .contacts { margin-top: 0; }
+  .k-back .contacts svg { stroke: var(--sky); }
+  .k-back .contacts .addr { color: rgb(255 255 255 / .72); }
+  .k-back .qr.r { right: 7mm; bottom: 6mm; background: #fff; padding: 1.1mm; border-radius: 1.2mm; }
+  .k-back .qr img { width: 13.5mm; height: 13.5mm; }
+  .k-back .qr span { display: none; }
 `;
 
 const html = `<!doctype html>
