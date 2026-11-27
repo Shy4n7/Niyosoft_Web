@@ -19,6 +19,28 @@ const person = (cls = '') =>
   `<div class="person ${cls}"><h1>Ashok Thomas</h1><div class="role">Founder</div><div class="co">Niyosoft Technologies</div></div>`;
 const qr = (cls = '') => `<div class="qr ${cls}"><img src="assets/qr.svg" alt="QR code for niyosoft.in"><span>SCAN TO VISIT</span></div>`;
 
+const mosaicColors = ['#0b1a5c','#0a2a8f','#0a2a8f','#0a3aa6','#0a3aa6','#0a4fd6','#0a2a8f','#0a3aa6','#0a4fd6','#0b3fb8','#0a4fd6','#0779a6','#0a3aa6','#0a4fd6','#0a86ad','#0779a6','#18c8e6','#0a86ad'];
+const V = {A:[0,0],B:[30,0],C:[60,0],D:[90,0],E:[0,18],F:[30,14],G:[60,20],H:[90,16],I:[0,36],J:[32,32],K:[62,38],L:[90,34],M:[0,50],N:[34,50],O:[64,50],P:[90,50]};
+const tris = ['ABE','BFE','BCF','CGF','CDG','DHG','EFI','FJI','FGJ','GKJ','GHK','HLK','IJM','JNM','JKN','KON','KLO','LPO'];
+const mosaic = `<svg class="mosaic" viewBox="0 0 90 50" preserveAspectRatio="none" aria-hidden="true">${tris.map((t, i) => `<polygon points="${[...t].map(c => V[c].join(',')).join(' ')}" fill="${mosaicColors[i]}" stroke="${mosaicColors[i]}" stroke-width=".15"/>`).join('')}</svg>`;
+const corner = `<svg class="corner" viewBox="0 0 30 22" aria-hidden="true"><polygon points="30,0 30,22 8,0" fill="#0a4fd6"/><polygon points="30,0 30,12 18,0" fill="#18c8e6"/><polygon points="14,0 30,0 22,0" fill="#0b1a5c"/><polygon points="30,22 30,8 12,22" fill="#0b1a5c" opacity=".9"/></svg>`;
+const wave = `<svg class="wave" viewBox="0 0 90 50" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#0a4fd6"/><stop offset="1" stop-color="#18c8e6"/></linearGradient></defs><path d="M0 43 C 20 36, 40 50, 60 43 S 84 38, 90 41 V50 H0 Z" fill="#0b1a5c" opacity=".22"/><path d="M0 38 C 18 30, 36 46, 56 38 S 82 30, 90 34 V50 H0 Z" fill="url(#wg)"/></svg>`;
+const waveSmall = `<svg class="wave" viewBox="0 0 90 12" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="wg2" x1="0" x2="1"><stop offset="0" stop-color="#0a4fd6"/><stop offset="1" stop-color="#18c8e6"/></linearGradient></defs><path d="M0 4 C 18 0, 34 9, 56 4 S 82 0, 90 3 V12 H0 Z" fill="url(#wg2)"/></svg>`;
+const dots = '<span class="dots"><i></i><i></i><i></i></span>';
+const codeLines = `<span class="k">const</span> <span class="p">founder</span> <span class="c">=</span> <span class="c">{</span>
+  <span class="p">name</span><span class="c">:</span>  <span class="s">"Ashok Thomas"</span><span class="c">,</span>
+  <span class="p">role</span><span class="c">:</span>  <span class="s">"Founder"</span><span class="c">,</span>
+  <span class="p">phone</span><span class="c">:</span> <span class="s">"+91 79041 53087"</span><span class="c">,</span>
+  <span class="p">alt</span><span class="c">:</span>   <span class="s">"+91 73394 56476"</span><span class="c">,</span>
+  <span class="p">email</span><span class="c">:</span> <span class="s">"niyosofttechnologies@gmail.com"</span><span class="c">,</span>
+  <span class="p">web</span><span class="c">:</span>   <span class="s">"niyosoft.in"</span><span class="c">,</span>
+  <span class="p">city</span><span class="c">:</span>  <span class="s">"Pollachi, Coimbatore, TN 642003"</span><span class="c">,</span>
+<span class="c">}</span><span class="c">;</span>`;
+const bgCode = `<span>const growth = await build(apps, websites);</span>
+<span>deploy({ payments: true, support: "24x7" });</span>
+<span>if (business.ready) digitalise(business);</span>
+<span>export default innovation;</span>`;
+
 const options = [
   {
     id: 'a', title: 'Option A: Classic', note: 'Matches the website: paper background, original lockup, blue base bar.',
@@ -44,6 +66,26 @@ const options = [
     id: 'e', title: 'Option E: First design, original logo', note: 'The first dark blue front with grid and glow, now carrying the original lockup on a white plate. Back is the first paper design.',
     front: `<div class="card e-front" id="e-front"><div class="plate">${lockup(13)}</div><div class="tag">Transforming Enterprises through Digital Innovation</div><div class="bar"></div></div>`,
     back: `<div class="card a-back e-back" id="e-back"><div class="stripe"></div><div class="col">${person()}${contacts()}</div>${qr('r')}</div>`,
+  },
+  {
+    id: 'f', title: 'Option F: Mosaic', note: 'A faceted blue mosaic, echoing the N, with a white ribbon carrying the horizontal lockup.',
+    front: `<div class="card f-front" id="f-front">${mosaic}<svg class="ribbon" viewBox="0 0 90 50" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,14 90,9 90,36 0,41" fill="#fff"/></svg><div class="lkwrap">${lockup(12, 'h')}</div></div>`,
+    back: `<div class="card f-back" id="f-back">${corner}<div class="col">${person()}${contacts()}</div>${qr('r')}</div>`,
+  },
+  {
+    id: 'g', title: 'Option G: Giant N', note: 'The original N mark at large scale, bleeding off the card. Gradient back.',
+    front: `<div class="card g-front" id="g-front"><img class="giant" src="assets/logo-mark.png" alt=""><div class="gl">${lockup(10)}<div class="tag">Software, apps &amp; IT services</div></div></div>`,
+    back: `<div class="card c-back g-back" id="g-back"><div class="col">${person()}${contacts()}</div><div class="chip"><img src="assets/logo-mark.png" alt=""></div>${qr('r')}</div>`,
+  },
+  {
+    id: 'h', title: 'Option H: Developer', note: 'For a software company: a terminal window holding the lockup, and a back written as code.',
+    front: `<div class="card h-front" id="h-front"><pre class="bgcode">${bgCode}</pre><div class="win"><div class="bar">${dots}<span class="ttl">niyosoft.in</span></div><div class="wb">${lockup(11.5)}</div></div><div class="prompt">&gt; Transforming Enterprises through Digital Innovation<b>_</b></div></div>`,
+    back: `<div class="card h-back" id="h-back"><div class="panel"><div class="bar">${dots}<span class="ttl">founder.ts</span></div><pre class="code">${codeLines}</pre>${qr('r')}</div></div>`,
+  },
+  {
+    id: 'i', title: 'Option I: Waves', note: 'Soft gradient waves, with the services listed along the bottom of the back.',
+    front: `<div class="card i-front" id="i-front">${wave}<div class="lkwrap">${lockup(13)}</div><div class="tag">Transforming Enterprises through Digital Innovation</div></div>`,
+    back: `<div class="card i-back" id="i-back">${person()}${qr('tr')}<ul class="contacts grid">${phones}${web}${mail}${addr}</ul>${waveSmall}<div class="svc">Mobile Apps &nbsp;|&nbsp; Websites &nbsp;|&nbsp; Ordering &amp; Payments &nbsp;|&nbsp; IT Support</div></div>`,
   },
 ];
 
@@ -165,6 +207,65 @@ const css = `
   .e-front .tag { position: absolute; bottom: 4.4mm; left: 0; right: 0; text-align: center; font-size: 2.1mm; letter-spacing: .06em; color: rgb(255 255 255 / .8); }
   .e-front .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 1.2mm; background: linear-gradient(90deg, var(--brand), var(--sky)); }
   .e-back { background: var(--paper); }
+
+  /* F */
+  .f-front { background: #0b1a5c; }
+  .f-front .mosaic, .f-front .ribbon { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .f-front .ribbon { filter: drop-shadow(0 .6mm .9mm rgb(10 18 64 / .4)); }
+  .f-front .lkwrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .f-back { background: #fff; }
+  .f-back .corner { position: absolute; right: 0; top: 0; width: 28mm; height: 20mm; }
+  .f-back .col { position: absolute; left: 6mm; top: 5.5mm; }
+  .f-back .contacts { margin-top: 3.4mm; }
+
+  /* G */
+  .g-front { background: var(--paper); }
+  .g-front .giant { position: absolute; right: -3mm; top: -4mm; height: 58mm; width: auto; }
+  .g-front .gl { position: absolute; left: 5mm; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; width: 32mm; }
+  .g-front .gl .tag { margin-top: 4mm; font-size: 2mm; color: var(--slate); width: 100%; text-align: center; }
+  .g-back { background: linear-gradient(135deg, #0a4fd6 0%, #0779a6 100%); }
+  .g-back .person .role { color: #b6f4ff; }
+  .g-back .person .co, .g-back .contacts .addr { color: rgb(255 255 255 / .85); }
+  .g-back .contacts svg { stroke: #fff; }
+
+  /* H */
+  .h-front { background: var(--ink); font-family: "DejaVu Sans Mono", ui-monospace, monospace; }
+  .h-front .bgcode { position: absolute; left: 4mm; top: 3mm; font: 1.9mm/3mm "DejaVu Sans Mono", monospace; color: var(--sky); opacity: .22; white-space: pre; }
+  .h-front .bgcode span { display: block; }
+  .win { position: absolute; left: 11mm; right: 11mm; top: 6mm; height: 33mm; background: #fff; border-radius: 2mm; overflow: hidden; box-shadow: 0 1mm 3mm rgb(0 0 0 / .4); }
+  .win .bar, .h-back .bar { height: 5mm; display: flex; align-items: center; padding: 0 2.4mm; background: #e6ecfb; }
+  .dots { display: inline-flex; gap: 1mm; }
+  .dots i { width: 1.5mm; height: 1.5mm; border-radius: 50%; background: var(--brand); display: block; }
+  .dots i:nth-child(2) { background: var(--sky); }
+  .dots i:nth-child(3) { background: var(--navy); }
+  .win .ttl { margin-left: 3mm; font: 1.8mm "DejaVu Sans Mono", monospace; color: var(--slate); }
+  .win .wb { height: 28mm; display: flex; align-items: center; justify-content: center; }
+  .h-front .prompt { position: absolute; left: 0; right: 0; bottom: 3.6mm; text-align: center; font: 2.05mm "DejaVu Sans Mono", monospace; color: var(--sky); }
+  .h-front .prompt b { font-weight: 400; color: #fff; }
+  .h-back { background: var(--ink); }
+  .h-back .panel { position: absolute; inset: 4mm; border-radius: 2mm; background: #0d1850; border: .25mm solid rgb(255 255 255 / .14); overflow: hidden; }
+  .h-back .bar { background: rgb(255 255 255 / .07); }
+  .h-back .ttl { margin-left: 3mm; font: 1.8mm "DejaVu Sans Mono", monospace; color: rgb(255 255 255 / .6); }
+  .h-back .code { position: absolute; left: 4.5mm; top: 7.2mm; font: 2.02mm/2.95mm "DejaVu Sans Mono", monospace; color: #fff; white-space: pre; }
+  .h-back .code .k { color: #7aa7ff; } .h-back .code .p { color: var(--sky); } .h-back .code .c { color: #8b95c9; } .h-back .code .s { color: #fff; }
+  .h-back .qr { right: 3.5mm; bottom: 3mm; background: #fff; padding: 1.1mm 1.1mm .5mm; border-radius: 1.4mm; }
+  .h-back .qr img { width: 13mm; height: 13mm; }
+  .h-back .qr span { color: var(--slate); font-size: 1.5mm; margin-top: .5mm; }
+
+  /* I */
+  .i-front { background: #fff; }
+  .i-front .wave { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .i-front .lkwrap { position: absolute; left: 0; right: 0; top: 3.5mm; height: 27mm; display: flex; align-items: center; justify-content: center; }
+  .i-front .tag { position: absolute; left: 0; right: 0; bottom: 3.2mm; text-align: center; font-size: 2.2mm; letter-spacing: .05em; color: #fff; }
+  .i-back { background: #fff; padding: 5mm 6mm 0; }
+  .i-back .person .co { display: none; }
+  .i-back .qr.tr { right: 5.5mm; top: 4.2mm; }
+  .i-back .qr.tr img { width: 13mm; height: 13mm; }
+  .i-back .qr.tr span { display: none; }
+  .i-back .grid { margin-top: 3.6mm; grid-template-columns: 1fr 1fr; column-gap: 3mm; row-gap: 1.5mm; position: relative; z-index: 1; }
+  .i-back .grid .ml, .i-back .grid .ad { grid-column: 1 / -1; }
+  .i-back .wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 8.5mm; }
+  .i-back .svc { position: absolute; left: 0; right: 0; bottom: 1.6mm; text-align: center; font-size: 1.95mm; letter-spacing: .04em; color: #fff; }
 `;
 
 const html = `<!doctype html>
