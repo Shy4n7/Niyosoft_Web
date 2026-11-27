@@ -8,6 +8,9 @@ HOW TO RUN
   Option B (command line):
             blender -b -P niyosoft_ad_blender.py -- --render
             blender -b -P niyosoft_ad_blender.py -- --save=/path/to/niyosoft_ad.blend
+
+  OUTPUT: PNG frames in ~/niyosoft_frames/. Make the MP4 with ffmpeg (install it first):
+            ffmpeg -framerate 30 -i ~/niyosoft_frames/frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 ~/niyosoft_ad.mp4
   Tested target: Blender 3.6 LTS and 4.x (Eevee). Needs no add-ons and no external assets.
 
 WHAT IT BUILDS
@@ -39,7 +42,7 @@ FPS = 30
 TOTAL_FRAMES = 600                  # 20 seconds
 RES_X, RES_Y = 1080, 1920           # 9:16. Use 1080 x 1080 or 1920 x 1080 for feed crops.
 QUICK_PREVIEW = True                # True: 50% size, few samples. Set False for the final render.
-OUTPUT_PATH = os.path.join(os.path.expanduser("~"), "niyosoft_ad.mp4")
+FRAMES_DIR = os.path.join(os.path.expanduser("~"), "niyosoft_frames")   # PNG frames are saved here
 
 PHONE_NUMBER = "+91 79041 53087"    # from src/lib/site.ts
 SITE_URL = "niyosoft.in"
@@ -765,15 +768,11 @@ def configure_render():
     except Exception:
         pass
 
-    scene.render.image_settings.file_format = "FFMPEG"
-    try:
-        scene.render.ffmpeg.format = "MPEG4"
-        scene.render.ffmpeg.codec = "H264"
-        scene.render.ffmpeg.constant_rate_factor = "HIGH"
-        scene.render.ffmpeg.audio_codec = "NONE"
-    except Exception:
-        pass
-    scene.render.filepath = OUTPUT_PATH
+    # Save PNG frames. Blender's built-in FFmpeg video option is not available in every build,
+    # so convert the frames to MP4 afterwards (see the note at the top of this file).
+    os.makedirs(FRAMES_DIR, exist_ok=True)
+    scene.render.image_settings.file_format = "PNG"
+    scene.render.filepath = os.path.join(FRAMES_DIR, "frame_")
 
 
 # ----------------------------------------------------------------------------------------------
@@ -797,8 +796,8 @@ def main():
     build_cameras()
     scene.frame_set(1)
 
-    print("Niyosoft ad scene built: %d frames at %d fps, %dx%d, output %s"
-          % (TOTAL_FRAMES, FPS, RES_X, RES_Y, OUTPUT_PATH))
+    print("Niyosoft ad scene built: %d frames at %d fps, %dx%d, frames in %s"
+          % (TOTAL_FRAMES, FPS, RES_X, RES_Y, FRAMES_DIR))
 
     if save_path:
         bpy.ops.wm.save_as_mainfile(filepath=save_path)
