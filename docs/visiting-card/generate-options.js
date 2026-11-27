@@ -41,6 +41,10 @@ const bgCode = `<span>const growth = await build(apps, websites);</span>
 <span>if (business.ready) digitalise(business);</span>
 <span>export default innovation;</span>`;
 
+const cluster = (cls) => `<svg class="cluster ${cls}" viewBox="0 0 32 22" aria-hidden="true"><polygon points="32,0 32,22 6,22" fill="#0a4fd6"/><polygon points="32,0 32,22 19,22" fill="#0a2a8f"/><polygon points="32,0 32,10 23.5,10" fill="#18c8e6"/><polygon points="32,10 32,22 26,22" fill="#0779a6"/></svg>`;
+const wedgeFront = `<svg class="wedge" viewBox="0 0 90 50" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a4fd6"/><stop offset="1" stop-color="#0779a6"/></linearGradient></defs><polygon points="70,0 90,0 90,50 56,50" fill="url(#mg)"/><polygon points="65,0 67.5,0 53.5,50 51,50" fill="#18c8e6"/></svg>`;
+const wedgeBack = `<svg class="wedge" viewBox="0 0 90 50" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a4fd6"/><stop offset="1" stop-color="#0779a6"/></linearGradient></defs><polygon points="87.5,0 90,0 90,50 84.5,50" fill="url(#mg2)"/><polygon points="86.2,0 86.9,0 83.4,50 82.7,50" fill="#18c8e6"/></svg>`;
+
 const options = [
   {
     id: 'a', title: 'Option A: Classic', note: 'Matches the website: paper background, original lockup, blue base bar.',
@@ -96,6 +100,16 @@ const options = [
     id: 'k', title: 'Option K: Clean navy back', note: 'Horizontal lockup on white with a slim blue edge. Navy back with white type.',
     front: `<div class="card k-front" id="k-front">${lockup(15, 'h')}<div class="edge"></div></div>`,
     back: `<div class="card k-back" id="k-back"><div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
+  },
+  {
+    id: 'l', title: 'Option L: Facet corner', note: 'Clean white card with one faceted corner that echoes the N mark.',
+    front: `<div class="card l-front" id="l-front">${lockup(15)}${cluster('br')}</div>`,
+    back: `<div class="card l-back" id="l-back">${cluster('tr')}<div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
+  },
+  {
+    id: 'm', title: 'Option M: Diagonal', note: 'Clean white card with a sharp diagonal edge in brand blue and a cyan accent line.',
+    front: `<div class="card m-front" id="m-front">${wedgeFront}<div class="lkw">${lockup(14)}</div></div>`,
+    back: `<div class="card m-back" id="m-back">${wedgeBack}<div class="col">${person()}<div class="hair"></div>${contacts()}</div>${qr('r')}</div>`,
   },
 ];
 
@@ -305,6 +319,33 @@ const css = `
   .k-back .qr.r { right: 7mm; bottom: 6mm; background: #fff; padding: 1.1mm; border-radius: 1.2mm; }
   .k-back .qr img { width: 13.5mm; height: 13.5mm; }
   .k-back .qr span { display: none; }
+
+  /* L */
+  .l-front { background: #fff; display: flex; align-items: center; justify-content: center; }
+  .cluster { position: absolute; display: block; }
+  .cluster.br { right: 0; bottom: 0; width: 32mm; height: 22mm; }
+  .cluster.tr { right: 0; top: 0; width: 22mm; height: 15mm; transform: scaleY(-1); }
+  .l-back { background: #fff; }
+  .l-back .col { position: absolute; left: 7mm; top: 6.5mm; }
+  .l-back .person .co { display: none; }
+  .l-back .hair { width: 9mm; height: .3mm; background: var(--brand); margin: 3mm 0 3.2mm; }
+  .l-back .contacts { margin-top: 0; }
+  .l-back .qr.r { right: 7mm; bottom: 6mm; }
+  .l-back .qr img { width: 14mm; height: 14mm; }
+  .l-back .qr span { display: none; }
+
+  /* M */
+  .m-front { background: #fff; }
+  .m-front .wedge, .m-back .wedge { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .m-front .lkw { position: absolute; left: 0; top: 0; bottom: 0; width: 62mm; display: flex; align-items: center; justify-content: center; }
+  .m-back { background: #fff; }
+  .m-back .col { position: absolute; left: 7mm; top: 6.5mm; }
+  .m-back .person .co { display: none; }
+  .m-back .hair { width: 9mm; height: .3mm; background: var(--brand); margin: 3mm 0 3.2mm; }
+  .m-back .contacts { margin-top: 0; }
+  .m-back .qr.r { right: 10mm; bottom: 6mm; }
+  .m-back .qr img { width: 14mm; height: 14mm; }
+  .m-back .qr span { display: none; }
 `;
 
 const html = `<!doctype html>
